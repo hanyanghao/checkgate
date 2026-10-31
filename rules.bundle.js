@@ -1,0 +1,8875 @@
+/*!
+ * CheckGate 规则库构建产物（rules.bundle.js）
+ * ---------------------------------------------------------------------------
+ * 本文件由 `node tools/build.js` 从 rules.json 自动生成，请勿手工编辑。
+ * 规则的事实来源是 rules.json；更新流程见 README.md「如何更新规则库」。
+ * 用途：浏览器在 file:// 协议下无法 fetch 本地 JSON，此产物让双击打开也能工作。
+ *
+ * 规则库版本：v2026-10-21　更新日期：2026-10-21
+ * 词条数量：374
+ */
+window.CHECKGATE_RULES = {
+  "version": "2026-10-21",
+  "updatedAt": "2026-10-21",
+  "source": "本规则库为CheckGate 初始种子数据（v1）。全部条目依据下列已核实的官方规则页面人工整理，每条均附ruleSource / ruleDate / ruleUrl，用户可点击溯源验证。后续版本由自动化抓取流程更新，见 docs/04-规则库维护方案.md。",
+  "coverage": {
+    "total": 374,
+    "byCategory": {
+      "绝对化用语": 38,
+      "虚假承诺": 78,
+      "医疗功效": 41,
+      "导流违规": 31,
+      "限流词": 155,
+      "侵权风险": 31
+    },
+    "byRiskLevel": {
+      "high": 193,
+      "medium": 119,
+      "low": 62
+    },
+    "byScope": {
+      "content": 369,
+      "profile": 5
+    },
+    "byPlatformCombo": {
+      "douyin+shipinhao+xiaohongshu": 103,
+      "shipinhao": 113,
+      "xiaohongshu": 67,
+      "douyin+xiaohongshu": 18,
+      "shipinhao+xiaohongshu": 23,
+      "douyin+shipinhao": 22,
+      "douyin": 28
+    },
+    "sourceVerified": {
+      "verified": 274,
+      "partial": 100
+    },
+    "note": "v1.4 交叉一致性铁规落地：ruleSource 的平台依据必须与 platforms 一致。全国性法律（广告法/价格法/标识办法）覆盖全平台；平台细则仅覆盖被点名平台。已下架「视频号小店」「公众号引流」2 条微信生态专用词；已收窄 245 条（单一平台依据）+ 补齐 9 条（ruleSource 引用了某平台但未收录该平台）。ruleDateKind 三值语义：公布日=法规公布/修订日｜生效日=规则正式施行日｜整理日期=我们核对该条之日（=verifiedAt）。注意：2015-04-24 为《广告法》修订草案提请审议日（公布日），非施行日。收录：三平台通用 100 / 仅抖红 16 / 仅视频号 113 / 仅抖音 28 / 仅小红书 69。 sentenceRules（句级改写规则）已为 12 条高频高危词预置，其余词降级到词级改法。 修正 3 条 suggestion 自洽性缺陷（替换文本自身含违规表述）。模式层 most_adj 排除机制由「单字」改为「完整词」（excludeWords），因单字排除会误伤「最好」。 修正 2 条 ruleSource 表述：'禁止留微信' → '禁止留微信联系方式'，避免被误判为视频号依据（描述性文字歧义）。",
+    "sentenceRulesCount": 17,
+    "ruleDateKind": {
+      "公布日": 91,
+      "整理日期": 234,
+      "生效日": 49
+    },
+    "patternRules": 2
+  },
+  "sources": [
+    {
+      "id": "douyin-self-discipline",
+      "ruleSource": "《抖音社区自律公约》",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "ruleDate": "2026-03-17",
+      "verifiedBy": "product-manager 于 2026-10-21 直接访问核实原文"
+    },
+    {
+      "id": "douyin-rule-center",
+      "ruleSource": "抖音规则中心",
+      "ruleUrl": "https://www.douyin.com/rule/policy",
+      "ruleDate": "2026-10-21",
+      "verifiedBy": "product-manager 于 2026-10-21 直接访问核实原文"
+    },
+    {
+      "id": "douyin-finance-norm",
+      "ruleSource": "《抖音社区财经行业公约（试行）》",
+      "ruleUrl": "https://aweme.snssdk.com/falcon/fe_douyin_security_react/rule/norm_content/?commerce_id=aJbVQR5DFRg4&hide_nav_bar=1",
+      "ruleDate": "2026-10-21",
+      "verifiedBy": "product-manager 于 2026-10-21 直接访问核实原文"
+    },
+    {
+      "id": "shipinhao-operation",
+      "ruleSource": "《微信视频号运营规范》",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "ruleDate": "2026-10-21",
+      "verifiedBy": "product-manager 于 2026-10-21 直接访问核实原文"
+    },
+    {
+      "id": "shipinhao-forbidden",
+      "ruleSource": "视频号禁止发表哪类内容（官方帮助中心）",
+      "ruleUrl": "https://findeross.weixin.qq.com/cgi-bin/mmfindernodelivecrmwebroker-bin/helper-center/pages/eeGC6A9rFfgzd61X",
+      "ruleDate": "2026-10-21",
+      "verifiedBy": "product-manager 于 2026-10-21 直接访问核实原文"
+    },
+    {
+      "id": "xhs-brand-norm",
+      "ruleSource": "《小红书品牌号社区运营规范》",
+      "ruleUrl": "https://dc.xhscdn.com/file/c947aa537be9e80d802226374b5c710f/%E5%93%81%E7%89%8C%E5%8F%B7%E7%A4%BE%E5%8C%BA%E8%BF%90%E8%90%A5%E8%A7%84%E8%8C%83.pdf",
+      "ruleDate": "2026-10-21",
+      "verifiedBy": "product-manager 于 2026-10-21 直接访问核实原文"
+    },
+    {
+      "id": "xhs-community",
+      "ruleSource": "《小红书社区公约》（App 内路径：我 → 左上角图标 → 社区公约）",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "ruleDate": "2026-09-18",
+      "verifiedBy": "product-manager 于 2026-10-21 核实；App 内路径为官方公示路径"
+    },
+    {
+      "id": "ad-law",
+      "ruleSource": "《中华人民共和国广告法》第九条（禁止绝对化用语）",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "ruleDate": "2015-04-24",
+      "verifiedBy": "🟡 法律原文，需在维护方案中由人工二次核验具体条文序号"
+    },
+    {
+      "id": "ai-labeling",
+      "ruleSource": "人工智能生成合成内容标识办法（AI 生成内容强制标识要求）",
+      "ruleUrl": "https://www.cac.gov.cn/2025-03/14/c_1743654684782215.htm",
+      "ruleDate": "2025-03-14",
+      "verifiedBy": "🟡 网信办原文链接，需人工二次核验；平台执行细则见各平台 AI 治理公告"
+    }
+  ],
+  "disclaimer": "本规则库为合规辅助工具，用于帮助用户理解平台规则的合规要求，不构成法律意见。所有条目均标注官方来源，用户应点击 ruleUrl 溯源核实平台最新规则。平台规则会动态更新，请以官方页面最新公示为准。",
+  "words": [
+    {
+      "term": "世界级",
+      "category": "绝对化用语",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "《广告法》第九条禁止的绝对化用语，三平台广告审核关键词库均包含。",
+      "suggestion": "改为国际品牌 / 出海品牌，并说明具体市场分布",
+      "ruleSource": "《中华人民共和国广告法》第九条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "中国第一",
+      "category": "绝对化用语",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "视频号运营规范 3.6.4 明确将中国第一酒等命名列为违规示例，属绝对化用语。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》3.6.4 / 《广告法》第九条",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "全网最低价",
+      "category": "绝对化用语",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "排他性价格表述，《广告法》禁止无法验证的比较。小红书广告规则明确将保证性承诺列为禁止。",
+      "suggestion": "改为本次活动价 XX 元，或说明比价范围与日期",
+      "ruleSource": "《广告法》 / 小红书广告规则",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "全网最便宜",
+      "category": "绝对化用语",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "绝对化价格表述，属《广告法》禁止范围。",
+      "suggestion": "改为本次活动价，标注比价范围与日期",
+      "ruleSource": "《广告法》第九条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "史上最低",
+      "category": "绝对化用语",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "绝对化价格表述，属《广告法》禁止范围。",
+      "suggestion": "改为历史最低价（标注时间范围）",
+      "ruleSource": "《广告法》第九条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "史上最便宜",
+      "category": "绝对化用语",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "绝对化价格表述，属《广告法》禁止范围。",
+      "suggestion": "改为历史最低价（如有依据并标注时间范围）",
+      "ruleSource": "《广告法》第九条 / 第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "国家级",
+      "category": "绝对化用语",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "《广告法》第九条禁止使用国家级、最高级、最佳等用语。视频号运营规范 3.6.4 亦禁止夸大宣传类命名。",
+      "suggestion": "删除该前缀，改为具体机构名称与认证信息",
+      "ruleSource": "《广告法》第九条 / 《微信视频号运营规范》3.6.4",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "https://findeross.weixin.qq.com/cgi-bin/mmfindernodelivecrmwebbroker-bin/helper-center/pages/eeGC6A9rFfgzd61X",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日",
+      "sentenceRules": [
+        {
+          "from": "国家级",
+          "to": "",
+          "example": "国家级认证 → 认证"
+        }
+      ]
+    },
+    {
+      "term": "国家级资质",
+      "category": "绝对化用语",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "《广告法》第九条禁止使用国家级等用语。",
+      "suggestion": "改为具体资质名称与颁发机构",
+      "ruleSource": "《广告法》第九条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "国酒",
+      "category": "绝对化用语",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 3.6.4 明确将国酒、中国第一酒等夸大宣传与欺骗性命名列为违规示例。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》3.6.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "最佳",
+      "category": "绝对化用语",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "《广告法》第九条明确禁止。视频号运营规范 3.4 亦规定账号资料禁止夸大性、误导性表述。",
+      "suggestion": "改为推荐人群、使用场景，避开排他性表述",
+      "ruleSource": "《微信视频号运营规范》3.4 / 《广告法》第九条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日",
+      "sentenceRules": [
+        {
+          "from": "最佳",
+          "to": "",
+          "example": "最佳选择 → 选择"
+        }
+      ]
+    },
+    {
+      "term": "最佳组合",
+      "category": "绝对化用语",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "广告法禁止的绝对化表述，小红书社区规范将夸大宣传列为违规内容，会触发限流。",
+      "suggestion": "改为我的搭配方案 / 我常用的组合",
+      "ruleSource": "《小红书社区公约》社区规范",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。",
+      "sentenceRules": [
+        {
+          "from": "最佳组合",
+          "to": "",
+          "example": "最佳组合 → （删除）"
+        }
+      ]
+    },
+    {
+      "term": "最好",
+      "category": "绝对化用语",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "属于《广告法》禁止的绝对化用语，比较对象不明确且无法验证，三平台广告审核均会拦截。",
+      "suggestion": "改为具体可验证的描述，如标注适用场景与实测数据，或改用体验描述。",
+      "ruleSource": "《中华人民共和国广告法》第九条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日",
+      "sentenceRules": [
+        {
+          "from": "最好",
+          "to": "非常好",
+          "example": "最好用 → 非常好用"
+        }
+      ]
+    },
+    {
+      "term": "最强",
+      "category": "绝对化用语",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "《广告法》第九条禁止使用国家级、最高级、最佳等用语。三个平台均将其纳入广告审核关键词库，使用即触发拒审或限流。",
+      "suggestion": "改为可验证的具体描述，如标注具体指标与数据来源（销量数据需附权威榜单佐证），或改用体验描述。",
+      "ruleSource": "《中华人民共和国广告法》第九条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日",
+      "sentenceRules": [
+        {
+          "from": "最强",
+          "to": "",
+          "example": "最强续航 → 续航"
+        }
+      ]
+    },
+    {
+      "term": "第一名",
+      "category": "绝对化用语",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "排他性排名表述若无权威依据无法核验，属《广告法》禁止的绝对化用语。",
+      "suggestion": "如确有权威榜单，改为XX平台2026年度XX榜单第一名（附榜单来源与查询日期）",
+      "ruleSource": "《中华人民共和国广告法》第九条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日",
+      "sentenceRules": [
+        {
+          "from": "第一名",
+          "to": "销量领先",
+          "example": "第一名 → 销量领先"
+        }
+      ]
+    },
+    {
+      "term": "绝无仅有",
+      "category": "绝对化用语",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "排他性表述，《广告法》禁止。视频号运营规范亦禁止夸大宣传性命名。",
+      "suggestion": "改为少见 / 比较少见",
+      "ruleSource": "《广告法》第九条 / 《微信视频号运营规范》3.6.4",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "顶级",
+      "category": "绝对化用语",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "属于排他性等级表述，《广告法》禁止无法验证的绝对化用语。",
+      "suggestion": "改为高端 / 旗舰级，并给出具体参数支撑",
+      "ruleSource": "《中华人民共和国广告法》第九条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "ultimate",
+      "category": "绝对化用语",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu"
+      ],
+      "reason": "英文 ultimate 语义为 ultimate/最佳，属绝对化用语的英文变体，常被平台多语言关键词库覆盖。",
+      "suggestion": "改为 my favorite / my top pick 等主观表达",
+      "ruleSource": "《广告法》第九条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "人手必备",
+      "category": "绝对化用语",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "绝对化表述，视频号运营规范 3.6.6 禁止有歧义误导用户的命名。",
+      "suggestion": "改为我的日常推荐",
+      "ruleSource": "《微信视频号运营规范》3.6.6",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "全民必买",
+      "category": "绝对化用语",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "绝对化人群指向表述，属误导性宣传。",
+      "suggestion": "改为适合 XX 人群",
+      "ruleSource": "《广告法》第九条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "全球领先",
+      "category": "绝对化用语",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "排他性比较表述，需权威依据支撑。",
+      "suggestion": "标注具体市场排名数据与来源",
+      "ruleSource": "《广告法》第九条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "前所未有",
+      "category": "绝对化用语",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "绝对化表述，属《广告法》禁止范围。",
+      "suggestion": "改为具体的新增功能或参数说明",
+      "ruleSource": "《广告法》第九条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "史无前例",
+      "category": "绝对化用语",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "绝对化历史断言，视频号运营规范 5.5.4 禁止编造夸张故事、煽动情绪的表述。",
+      "suggestion": "改为首次在本地上线 / 我们家做了20 年的经验",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "唯一",
+      "category": "绝对化用语",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "排他性表述，通常需要权威依据支撑。视频号运营规范 3.6.6 禁止有歧义误导用户的命名。",
+      "suggestion": "改为少数支持 XX 功能的工具之一（需可验证）",
+      "ruleSource": "《微信视频号运营规范》3.6.6",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "唯一一款",
+      "category": "绝对化用语",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "排他性表述，需可验证依据。",
+      "suggestion": "改为支持XX 功能的产品之一",
+      "ruleSource": "《广告法》第九条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "无与伦比",
+      "category": "绝对化用语",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "比较级绝对化表述，无客观依据无法验证，属《广告法》禁止范围。",
+      "suggestion": "改为使用体验描述",
+      "ruleSource": "《广告法》第九条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "无脑冲",
+      "category": "绝对化用语",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu"
+      ],
+      "reason": "属绝对化推荐表述。《广告法》第九条禁止使用\"国家级、最高级、最佳\"等用语，三平台广告审核均会拦截无依据的绝对化推荐。",
+      "suggestion": "改为按需选择",
+      "ruleSource": "《广告法》第九条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "有机",
+      "category": "绝对化用语",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "需取得有机产品认证并标注认证标志方可使用。",
+      "suggestion": "需提供有机认证编号",
+      "ruleSource": "《广告法》第二十八条 / 有机产品认证管理规定",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "极品",
+      "category": "绝对化用语",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "商品品质类绝对化表述，小红书社区规范将夸大宣传列为违规内容。",
+      "suggestion": "改为具体描述品质特征，如材质、工艺、口感",
+      "ruleSource": "《小红书社区公约》社区规范",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "独家",
+      "category": "绝对化用语",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "排他性表述，无授权依据时使用可能构成虚假宣传，小红书社区规范将误导性内容列为违规。",
+      "suggestion": "如确有独家授权，改为 XX 品牌官方授权（附授权说明）",
+      "ruleSource": "《小红书社区公约》社区规范",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "纯天然",
+      "category": "绝对化用语",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "绝对化表述，如产品含人工添加成分则构成虚假宣传。",
+      "suggestion": "如实标注成分",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "行业领先",
+      "category": "绝对化用语",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "排他性比较表述，需第三方报告支撑。",
+      "suggestion": "标注报告名称、机构与年份",
+      "ruleSource": "《广告法》第九条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "销量第一",
+      "category": "绝对化用语",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "排名表述需权威榜单支撑，否则无法核验。",
+      "suggestion": "标注榜单来源、统计口径与查询日期",
+      "ruleSource": "《广告法》第九条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "闭眼入",
+      "category": "绝对化用语",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "暗示无需判断即可购买，属绝对化推荐表述。",
+      "suggestion": "改为按需选择，建议先看参数",
+      "ruleSource": "《广告法》第九条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "零添加",
+      "category": "绝对化用语",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "绝对化表述，与国标对食品添加剂的表述规范冲突时可能构成虚假宣传。",
+      "suggestion": "按国标规范表述配料表",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "首创",
+      "category": "绝对化用语",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "排他性表述，需可验证依据。视频号运营规范 3.6.6 禁止有歧义误导用户的命名。",
+      "suggestion": "如确有首创，标注时间与依据",
+      "ruleSource": "《广告法》第九条 / 《微信视频号运营规范》3.6.6",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "学生党必备",
+      "category": "绝对化用语",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "正常推荐表达，本身不违规。",
+      "suggestion": "无需替换",
+      "ruleSource": "《小红书社区公约》社区规范",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "打工人必备",
+      "category": "绝对化用语",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "正常推荐表达，本身不违规。",
+      "suggestion": "无需替换",
+      "ruleSource": "《小红书社区公约》社区规范",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "无糖",
+      "category": "绝对化用语",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "该词本身有国标定义（≤0.5g/100mL），但需符合标准才能标注。",
+      "suggestion": "需符合国标定义方可标注",
+      "ruleSource": "《广告法》第二十八条 / 食品标识国标",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "100%准确",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "效果保证性承诺，微信小店官方禁止项。工具类产品的规则库会随平台更新变化，无法承诺绝对准确。",
+      "suggestion": "改为标注准确度范围 + 规则库版本日期 + 官方来源可溯源",
+      "ruleSource": "微信小店官方规则禁止项",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://store.weixin.qq.com/chengzhang/webdoc/wiki/9730/7ab3758b7be0bf55/growth_center_rule_for_store?source=4",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。",
+      "sentenceRules": [
+        {
+          "from": "100%准确",
+          "to": "实测",
+          "example": "100%准确 → 实测"
+        }
+      ]
+    },
+    {
+      "term": "100%有效",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "效果保证性承诺，《广告法》第二十八条虚假广告情形。小红书广告规则明确禁止对效果作保证性承诺（含无条件退费类表述）。",
+      "suggestion": "改为实测有效 / 我个人使用效果是，请注意因人而异",
+      "ruleSource": "《广告法》第二十八条 / 小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日",
+      "sentenceRules": [
+        {
+          "from": "100%有效",
+          "to": "实测有效",
+          "example": "100%有效 → 实测有效"
+        }
+      ]
+    },
+    {
+      "term": "7天见效",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "效果保证性承诺+ 时间承诺，属典型虚假宣传。视频号运营规范 5.5.3 禁止误导性描述使用户产生错误理解。",
+      "suggestion": "删除时间承诺，改为因人而异",
+      "ruleSource": "《微信视频号运营规范》5.5.3",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "一夜暴富",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "收益承诺类表述，视频号运营规范 5.5.4 明确禁止编造夸张故事煽动情绪。",
+      "suggestion": "改为长期积累过程的记录",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "不反弹",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "效果保证性承诺，健身减脂类内容为高风险宣称。",
+      "suggestion": "改为我的个人记录，效果因人而异",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "买好评",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "同刷好评类违规。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》4.5 / 《小红书社区规范》4.4.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "保底",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "结果保证性承诺，属虚假宣传。金融类内容另受《抖音社区财经行业公约》约束。",
+      "suggestion": "改为尽力协助，不承诺结果",
+      "ruleSource": "《广告法》第二十八条 / 《抖音社区财经行业公约》",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://aweme.snssdk.com/falcon/fe_douyin_security_react/rule/norm_content/?commerce_id=aJbVQR5DFRg4&hide_nav_bar=1",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "保本",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao"
+      ],
+      "reason": "投资风险保证性表述，属违规金融内容范畴。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《抖音社区财经行业公约》 / 《微信视频号运营规范》4.6.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://findeross.weixin.qq.com/cgi-bin/mmfindernodelivecrmwebbroker-bin/helper-center/pages/eeGC6A9rFfgzd61X",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "保证过审",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "同属对平台审核结果作保证性承诺，属虚假宣传。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日",
+      "sentenceRules": [
+        {
+          "from": "保证过审",
+          "to": "",
+          "example": "保证过审 → （删除）"
+        }
+      ]
+    },
+    {
+      "term": "内部渠道",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "暗示不正当来源，属误导性宣传。视频号运营规范 4.11禁止利用隐瞒诱骗发布虚假内容。",
+      "suggestion": "删除该表述，改为如实说明供货来源",
+      "ruleSource": "《微信视频号运营规范》4.11 / 《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "内部渠道泄露",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "暗示不正当来源，属误导性宣传，视频号运营规范 4.11 禁止利用隐瞒诱骗发布虚假内容。",
+      "suggestion": "删除该表述，如实说明来源",
+      "ruleSource": "《微信视频号运营规范》4.11 / 《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "减重X斤",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "量化效果承诺，属保证性表述。健康类内容需特别谨慎。",
+      "suggestion": "改为分享方法，不承诺具体数值",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "刷信誉",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 4.5 明确禁止刷量类行为。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》4.5",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "刷单返现",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "虚假交易，视频号运营规范 4.5 明确禁止；小红书社区规范 4.4.4 禁止产生虚假数据。",
+      "suggestion": "删除该表述，此类行为违法",
+      "ruleSource": "《微信视频号运营规范》4.5 / 《小红书社区规范》4.4.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "刷好评",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "视频号运营规范 4.5 明确禁止；小红书社区规范 4.4.4 禁止产生虚假数据。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》4.5 / 《小红书社区规范》4.4.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "包接单",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "对结果作保证性承诺，属虚假宣传高风险表述。微信小店官方禁止宣传包接单类承诺，广州 AI 培训案已出现法定代表人被追究刑事责任的案例。",
+      "suggestion": "改为提供方法与工具，效果取决于执行",
+      "ruleSource": "微信小店官方规则禁止项",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://store.weixin.qq.com/chengzhang/webdoc/wiki/9730/7ab3758b7be0bf55/growth_center_rule_for_store?source=4",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "原价199",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "虚构划线价违反价格法与广告法。静态工具定价低时尤其容易踩，调研报告已明确提示。",
+      "suggestion": "删除虚构原价，直接标注实际售价，或标注原价须有真实成交依据",
+      "ruleSource": "《广告法》 / 价格法 / 微信小店官方规则禁止项",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://store.weixin.qq.com/chengzhang/webdoc/wiki/9730/7ab3758b7be0bf55/growth_center_rule_for_store?source=4",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "央视推荐",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "冒用权威媒体名义属虚假宣传，情节严重可能涉刑。",
+      "suggestion": "如确有报道，标注媒体名称、日期与链接",
+      "ruleSource": "《广告法》第二十八条 / 《微信视频号运营规范》4.9",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "完全替代人工",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "微信小店官方规则明确禁止宣传完全替代人工类表述。",
+      "suggestion": "改为辅助人工处理，保留人工确认环节",
+      "ruleSource": "微信小店官方规则禁止项",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://store.weixin.qq.com/chengzhang/webdoc/wiki/9730/7ab3758b7be0bf55/growth_center_rule_for_store?source=4",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "官方推荐",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "冒用官方名义属虚假宣传，视频号运营规范 4.9 禁止冒用身份。",
+      "suggestion": "如确有官方推荐，标注推荐方与日期，并提供可验证依据",
+      "ruleSource": "《微信视频号运营规范》4.9（使用不实身份）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "无效退款",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "无条件退费类保证性承诺，小红书广告规则明确列入禁止范围。广州 3 家 AI 培训公司因同类宣称被投诉 200+ 件，法定代表人已被逮捕——这是最贵的教训。",
+      "suggestion": "改为按平台规则提供售后支持，不做无条件退费承诺",
+      "ruleSource": "小红书广告规则（功效与保证性承诺） / 微信小店官方禁止项",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://store.weixin.qq.com/chengzhang/webdoc/wiki/9730/7ab3758b7be0bf55/growth_center_rule_for_store?source=4",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。",
+      "sentenceRules": [
+        {
+          "from": "无效退款",
+          "to": "",
+          "example": "无效退款 → （删除整段）"
+        }
+      ]
+    },
+    {
+      "term": "无限Token",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "微信小店官方规则明确禁止宣传无限 Token 类表述。",
+      "suggestion": "如实说明用量机制",
+      "ruleSource": "微信小店官方规则禁止项",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://store.weixin.qq.com/chengzhang/webdoc/wiki/9730/7ab3758b7be0bf55/growth_center_rule_for_store?source=4",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "无限使用",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "微信小店官方规则明确禁止宣传无限 Token 等类表述。",
+      "suggestion": "如实说明使用期限与额度",
+      "ruleSource": "微信小店官方规则禁止项",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://store.weixin.qq.com/chengzhang/webdoc/wiki/9730/7ab3758b7be0bf55/growth_center_rule_for_store?source=4",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "无风险",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "风险保证性表述，同属误导性商业宣传。",
+      "suggestion": "改为如实说明风险与前置条件",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "月入十万",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "收益承诺类表述，视频号运营规范 5.5.4 明确将编造快速赚钱经历列为违规；小红书社区规范禁止误导性内容。",
+      "suggestion": "改为我的真实收入记录（可提供后台截图），并说明不具普遍性",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "月入过万",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "收益承诺类表述，视频号运营规范 5.5.4 明确禁止编造快速赚钱经历与成功经验。",
+      "suggestion": "改为分享方法，收益因人而异",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "永不封号",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "平台规则会动态变更，无法承诺永不触发处罚。属误导性表述。",
+      "suggestion": "改为提供合规检查工具，不对平台处罚结果作承诺",
+      "ruleSource": "微信小店官方规则禁止项",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://store.weixin.qq.com/chengzhang/webdoc/wiki/9730/7ab3758b7be0bf55/growth_center_rule_for_store?source=4",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "永久有效",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "微信小店官方规则明确禁止宣传永久/终身套餐类表述。平台规则会动态更新，永久承诺在交付上必然失效。",
+      "suggestion": "改为当期有效，并标注规则库版本日期与更新日期",
+      "ruleSource": "微信小店官方规则禁止项",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://store.weixin.qq.com/chengzhang/webdoc/wiki/9730/7ab3758b7be0bf55/growth_center_rule_for_store?source=4",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "永久稳定",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "微信小店官方规则明确禁止宣传永久稳定类表述。",
+      "suggestion": "改为标注维护状态与最近更新日期",
+      "ruleSource": "微信小店官方规则禁止项",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://store.weixin.qq.com/chengzhang/webdoc/wiki/9730/7ab3758b7be0bf55/growth_center_rule_for_store?source=4",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "独家代理",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "如无授权文件构成虚假宣传，视频号运营规范 4.1.2 禁止擅自使用他人企业名称或商标。",
+      "suggestion": "如确有授权，提供授权文件并标注有效期",
+      "ruleSource": "《微信视频号运营规范》4.1.2 / 《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "睡后收入",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "收益承诺类表述，属典型虚假宣传，视频号运营规范 5.5.4 禁止编造快速赚钱经历。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "稳赚",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao"
+      ],
+      "reason": "投资收益保证性承诺，视频号运营规范 5.5.4 明确禁止编造快速赚钱经历类内容；抖音社区自律公约禁止发布违反法律法规扰乱经济秩序的内容。",
+      "suggestion": "改为分享方法与真实过程，不作收益保证",
+      "ruleSource": "《微信视频号运营规范》5.5.4 / 《抖音社区自律公约》五（违规或违法交易）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "稳赚不赔",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu"
+      ],
+      "reason": "投资风险保证性表述，小红书广告规则明确将保证性承诺列为禁止；《抖音社区财经行业公约》禁止违规金融内容。",
+      "suggestion": "删除该表述，投资有风险",
+      "ruleSource": "小红书广告规则 / 《抖音社区财经行业公约》",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://aweme.snssdk.com/falcon/fe_douyin_security_react/rule/norm_content/?commerce_id=aJbVQR5DFRg4&hide_nav_bar=1",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "终身",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "微信小店官方规则明确禁止宣传终身套餐类表述。",
+      "suggestion": "改为年度订阅 + 明确更新周期",
+      "ruleSource": "微信小店官方规则禁止项",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://store.weixin.qq.com/chengzhang/webdoc/wiki/9730/7ab3758b7be0bf55/growth_center_rule_for_store?source=4",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "终身质保",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "微信小店官方规则明确禁止宣传终身类表述。",
+      "suggestion": "改为质保期 X 年，并标注适用范围",
+      "ruleSource": "微信小店官方规则禁止项",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://store.weixin.qq.com/chengzhang/webdoc/wiki/9730/7ab3758b7be0bf55/growth_center_rule_for_store?source=4",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "绕过审核",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "同属暗示可跳过平台管理，属违规表述。",
+      "suggestion": "删除该表述，改为提供合规检查与修改建议",
+      "ruleSource": "《微信视频号运营规范》4.7 / 《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "自动过审",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "对平台审核结果作保证性承诺，属虚假宣传，且与平台治理规则方向相反。",
+      "suggestion": "删除该表述，改为提供合规检查与修改建议",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "虚假优惠",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "价格法与广告法禁止虚构划线价与虚假优惠，调研报告已明确提示静态工具定价低时尤其容易踩这条线。",
+      "suggestion": "如实标注实际售价与优惠依据",
+      "ruleSource": "价格法 / 《广告法》",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "虚假好评",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "《广告法》第二十八条虚假广告情形，视频号运营规范 4.5 禁止刷量。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《广告法》第二十八条 / 《微信视频号运营规范》4.5",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "规避检测",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "暗示可跳过平台检测机制，属虚假宣传且与平台治理方向相反。视频号运营规范 4.7 明确禁止恶意对抗平台规则。",
+      "suggestion": "删除该表述，改为提供合规检查与修改建议",
+      "ruleSource": "《微信视频号运营规范》4.7（恶意对抗） / 《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "躺赚",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "收益承诺类表述，视频号运营规范 5.5.4 禁止编造快速赚钱经历。",
+      "suggestion": "改为分享真实操作流程与耗时",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "躺赚模式",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "收益承诺类表述，属典型虚假宣传。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "轻松月入",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "收益承诺类表述，视频号运营规范 5.5.4 禁止编造夸张猎奇故事煽动情绪的表述。",
+      "suggestion": "改为分享可复现的操作步骤",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "防封号",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "对平台处罚结果作保证性承诺，属虚假宣传，且暗示对抗平台管理。",
+      "suggestion": "删除该表述，改为提供合规检查工具",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "零风险",
+      "category": "虚假承诺",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "风险保证性表述，属误导性商业宣传，《广告法》第二十八条虚假广告情形。",
+      "suggestion": "改为说明实际风险点，帮助用户判断",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "0.01元",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "常见引流话术，若实际需高价购买则构成价格误导，调研报告已提示虚构划线价风险。",
+      "suggestion": "如实标注完整费用构成",
+      "ruleSource": "价格法 / 《广告法》",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "0元学",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "教育培训类若实际收费则构成价格误导，视频号运营规范 4.6.4 禁止违反广告法的营销活动。",
+      "suggestion": "如实标注定价",
+      "ruleSource": "《微信视频号运营规范》4.6.4 / 《广告法》",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "1元体验",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "若实际总价较高未显著标注则构成价格误导。",
+      "suggestion": "显著标注后续费用",
+      "ruleSource": "价格法 / 《广告法》",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "9.9元学会",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "如实际学习成本远超所述则构成误导，影视飓风案例中曾出现赠送积分用完需额外充值导致实际成本高于标价的差评。",
+      "suggestion": "显著标注全部成本，不设置后续付费门槛",
+      "ruleSource": "《广告法》第二十八条 / 消费者权益保护法",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "不限次数",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "如存在隐藏限制则构成误导。",
+      "suggestion": "如实说明使用条件",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "不限量",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "若存在隐藏限制则构成误导，需如实说明使用条件。",
+      "suggestion": "如实说明使用条件与上限",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "专柜同款",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "如无专柜依据则构成虚假宣传，小红书社区规范禁止误导性内容。",
+      "suggestion": "如确有专柜渠道，标注具体门店信息",
+      "ruleSource": "《小红书社区公约》社区规范",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "亏本冲",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "价格虚假宣传，视频号运营规范 5.5.3 禁止误导性描述。",
+      "suggestion": "如实说明清仓原因与实际售价",
+      "ruleSource": "《微信视频号运营规范》5.5.3 / 价格法",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "亏本卖",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "价格虚假宣传，若无真实依据构成误导。",
+      "suggestion": "如实标注成本与售价，或改为清仓处理",
+      "ruleSource": "《广告法》 / 价格法",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "假一赔十",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "如无相应赔付能力与依据则构成虚假承诺，《广告法》第二十八条。",
+      "suggestion": "如确有赔付政策，标注政策依据与适用范围",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "免费升级",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "若实际收费则构成误导性宣传。",
+      "suggestion": "明确升级是否收费",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "免费领取",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "若实际需完成任务或付费则构成误导性宣传。",
+      "suggestion": "如实说明领取条件",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "全网首发",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "排他性表述需可验证依据，否则构成误导。",
+      "suggestion": "如确有首发，标注首发平台与日期",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "半价",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "如无真实原价参照则构成价格误导。",
+      "suggestion": "标注原价依据，或直接标注现价",
+      "ruleSource": "价格法 / 《广告法》",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "即将涨价",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "虚假紧迫感，视频号运营规范 5.5.3 禁止误导性描述使用户产生错误理解。",
+      "suggestion": "如有真实涨价计划，标注具体日期与幅度",
+      "ruleSource": "《微信视频号运营规范》5.5.3",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "官方正品",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "如无官方授权则构成虚假宣传，视频号运营规范 4.9 禁止冒用身份。",
+      "suggestion": "如确有官方授权，提供凭证并标注授权方",
+      "ruleSource": "《微信视频号运营规范》4.9 / 《广告法》第二十八条",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "已售10万+",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "如无真实销售数据则构成虚假宣传。",
+      "suggestion": "标注数据来源、统计口径与时间",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "最后XX小时",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "虚假紧迫感促销，属误导性商业宣传。",
+      "suggestion": "改为真实截止日期，或改为名额有限并说明依据",
+      "ruleSource": "《广告法》第二十八条 / 《微信视频号运营规范》5.5.3",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "月入",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "收益类表述，需真实数据支撑，否则构成虚假宣传。",
+      "suggestion": "如有真实记录可标注数据来源与时间",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "特殊渠道",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "暗示不正当来源，属误导性宣传。",
+      "suggestion": "如实说明正当来源",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "百分百好评",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "绝对化评价表述，需真实数据支撑。",
+      "suggestion": "改为实际好评率并说明统计口径",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "翻倍",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "收益承诺类表述，视频号运营规范 5.5.4 禁止编造快速赚钱经历。",
+      "suggestion": "改为分享方法，不承诺收益倍数",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "躺平副业",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "收益承诺类表述，视频号运营规范 5.5.4 禁止编造快速赚钱经历。",
+      "suggestion": "如实描述工作流程与耗时",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "躺赢",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu",
+        "shipinhao"
+      ],
+      "reason": "收益承诺类表述，视频号运营规范 5.5.4 禁止编造快速赚钱经历。",
+      "suggestion": "改为分享实际操作流程",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "限时最后一天",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "虚构紧迫感属误导性促销，视频号运营规范 5.5.3 禁止误导性描述。",
+      "suggestion": "如确有期限，标注具体截止日期；无则删除",
+      "ruleSource": "《微信视频号运营规范》5.5.3",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "零差评",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "如实际存在差评则构成虚假宣传。",
+      "suggestion": "改为好评率 XX%（标注统计范围与日期）",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "零费用",
+      "category": "虚假承诺",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "若存在隐藏费用则构成误导，需如实说明全部费用构成。",
+      "suggestion": "如实标注费用构成与可能产生的额外费用",
+      "ruleSource": "《广告法》第二十八条 / 消费者权益保护法",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "买一送一",
+      "category": "虚假承诺",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "正常促销描述，若实际不兑现则构成欺诈。",
+      "suggestion": "确保活动可兑现",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "低价出清",
+      "category": "虚假承诺",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "正常促销描述，若虚构原价则构成价格违法。",
+      "suggestion": "如实标注原价依据",
+      "ruleSource": "价格法 / 《广告法》",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "原价",
+      "category": "虚假承诺",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "该词本身中性，但虚构划线价违反价格法与广告法。",
+      "suggestion": "原价须有真实成交依据，并标注时间范围",
+      "ruleSource": "价格法 / 《广告法》",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "正品保障",
+      "category": "虚假承诺",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "正常商品描述，若无正品保障则构成虚假宣传。",
+      "suggestion": "如实说明保障机制",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "清仓甩卖",
+      "category": "虚假承诺",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "本身不违规，但若虚构原价或库存则构成虚假宣传。",
+      "suggestion": "如实标注原价与实际折扣依据",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "血赚",
+      "category": "虚假承诺",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu",
+        "shipinhao"
+      ],
+      "reason": "口语化夸张表述，视频号运营规范 5.5.4 禁止以浮夸描述煽动人群。",
+      "suggestion": "改为具体收益数值并说明条件",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "保健作用",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书广告规则明确：非医疗类普通产品绝对不能宣称保健作用。",
+      "suggestion": "如为保健食品需取得蓝帽子批文并标注；否则删除该表述",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "儿童专用",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "涉及未成年人保护，视频号运营规范 5.7 明确禁止展示未成年人婚育内容及不利于未成年人健康成长的内容。",
+      "suggestion": "涉及儿童内容需符合未成年人保护规范",
+      "ruleSource": "《微信视频号运营规范》5.7",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "减肥药",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "药品推广需资质认证，抖音社区自律公约禁止未经资质发布药品推广内容。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《抖音社区自律公约》五（违规或违法交易）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）"
+      },
+      "platformVerified": {
+        "douyin": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "包治",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "医疗功效保证性表述，小红书广告规则明确非医疗类普通产品不得宣称治病疗效。",
+      "suggestion": "删除该表述",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。",
+      "sentenceRules": [
+        {
+          "from": "包治",
+          "to": "",
+          "example": "包治好 → （删除）"
+        }
+      ]
+    },
+    {
+      "term": "医美级",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书广告规则明确列出医美级美白等表述为禁止功效词，普通商品不得宣称医美功效。",
+      "suggestion": "改为具体成分与参数描述",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "壮阳",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "涉及药品功效与两性内容，视频号运营规范 5.9 禁止低俗与违背伦理内容。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》5.9 / 小红书广告规则",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "处方",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "药品推广需资质。抖音社区自律公约禁止未经资质认证发布药品、医疗器械推广内容。",
+      "suggestion": "删除该表述；如需推广须取得资质并经平台认证",
+      "ruleSource": "《抖音社区自律公约》五（违规或违法交易）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）"
+      },
+      "platformVerified": {
+        "douyin": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "抑菌",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "同杀菌类，消毒产品需卫生许可，普通商品宣称属违规。",
+      "suggestion": "改为产品实际功能描述",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "抗发炎",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "特证功效词，小红书广告规则明确列为禁止表述。",
+      "suggestion": "删除该表述",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "抗抑郁",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书广告规则明确列出抗抑郁为禁止表述，涉及精神类药物功效宣称。",
+      "suggestion": "删除该表述；如有心理困扰请寻求专业机构帮助",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "抗炎",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "医学功效表述，小红书广告规则明确在未取得保健食品批文前不得出现抗发炎类特证功效词。",
+      "suggestion": "删除该表述，改为皮肤状态感受描述",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "抗癌",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "医疗功效宣称，涉及重大疾病，普通商品严禁宣称。",
+      "suggestion": "删除该表述",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "抗癌食物",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "普通食品不得宣称疾病预防治疗功能，小红书广告规则明确此类功效禁止。",
+      "suggestion": "按普通食品宣传，删除功效表述",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "排毒",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "常见伪科学功效宣称，小红书广告规则明确非医疗类普通产品不得宣称此类功效。",
+      "suggestion": "删除该表述",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "提高免疫力",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "保健食品需蓝帽子批文方可宣称此功能，普通商品严禁。",
+      "suggestion": "如为保健食品需提供批文；否则删除该表述",
+      "ruleSource": "小红书广告规则（大健康类目要求）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "杀菌",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "消毒类功效宣称，需卫生许可或药品资质，普通商品不得宣称。",
+      "suggestion": "改为适用范围描述（如：适用于XX 场景），不宣称杀菌功效",
+      "ruleSource": "《广告法》第二十八条 / 小红书广告规则",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "根治",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu"
+      ],
+      "reason": "医疗功效宣称，普通商品不得使用；药品推广需资质认证。",
+      "suggestion": "删除该表述；如有疾病请遵医嘱",
+      "ruleSource": "《抖音社区自律公约》五 / 小红书广告规则",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。",
+      "sentenceRules": [
+        {
+          "from": "根治",
+          "to": "",
+          "example": "彻底根治 → （删除）"
+        }
+      ]
+    },
+    {
+      "term": "治愈",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "医疗功效宣称，普通商品不得宣称治病疗效。小红书广告规则明确：非医疗类普通产品绝不能宣称治病疗效。",
+      "suggestion": "改为有助于…（须符合产品实际功能范围），或改为使用感受描述",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "治疗",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu"
+      ],
+      "reason": "医疗功效宣称，涉及医疗广告红线。抖音社区自律公约禁止发布未经资质认证的医疗服务推广内容。",
+      "suggestion": "删除医疗功效表述；如有药品医疗器械推广需取得资质并经平台认证",
+      "ruleSource": "《抖音社区自律公约》五（违规或违法交易） / 小红书广告规则",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。",
+      "sentenceRules": [
+        {
+          "from": "治疗",
+          "to": "",
+          "example": "治疗脱发 → （删除）"
+        }
+      ]
+    },
+    {
+      "term": "消炎",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "药品功效词，普通商品不得宣称。",
+      "suggestion": "删除该表述",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "消炎止咳",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "药品功效宣称，普通食品严禁。",
+      "suggestion": "删除该表述",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "疗效",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "医疗功效宣称，非医疗类产品不得使用。小红书广告规则要求功效描述严格符合产品实际功能范围。",
+      "suggestion": "改为使用效果需因人而异，符合产品实际功能范围描述",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "祛湿",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "中医功效宣称，普通商品不得宣称。小红书广告规则明确此类功效禁止。",
+      "suggestion": "按普通食品宣传，删除功效表述",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "祛痘",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "常与药品功效关联，普通商品不得宣称。小红书医美美妆为高风险赛道，AI 治理规则重点复核。",
+      "suggestion": "如为药品需资质认证；否则改为皮肤护理建议并注明不替代诊疗",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "药效",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "药品功效宣称，普通商品不得使用。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "补气血",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "中医功效宣称，普通商品不得宣称。",
+      "suggestion": "按普通食品宣传，删除功效表述",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "解酒",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "涉及药品或保健功效宣称，普通商品不得宣称。",
+      "suggestion": "删除该表述",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "防癌",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "医疗功效宣称，涉及重大疾病预防，普通商品严禁宣称。",
+      "suggestion": "删除该表述",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "降血压",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "普通食品不得宣称疾病治疗功能。",
+      "suggestion": "删除该表述；高血压患者请遵医嘱",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "降血糖",
+      "category": "医疗功效",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "普通食品不得宣称疾病治疗功能，涉及糖尿病患者健康风险。",
+      "suggestion": "删除该表述；糖尿病患者请遵医嘱",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "催乳",
+      "category": "医疗功效",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "涉及特殊人群（哺乳期）健康建议，普通商品不得宣称功效。",
+      "suggestion": "删除该表述；哺乳期人群请咨询专业人士",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "医美",
+      "category": "医疗功效",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书将医美列为高风险赛道重点复核对象，非资质主体不得推广医疗美容服务。",
+      "suggestion": "如需推广须具备医疗资质并经平台认证",
+      "ruleSource": "小红书社区规范（高风险赛道治理）",
+      "ruleDate": "2026-10-05",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "婴儿",
+      "category": "医疗功效",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 5.7.7 禁止披露未成年人的个人隐私；5.7 涉及未成年人内容需特别谨慎。",
+      "suggestion": "涉及婴儿内容需符合未成年人保护与隐私规范",
+      "ruleSource": "《微信视频号运营规范》5.7",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "整容",
+      "category": "医疗功效",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书品牌号社区运营规范将整容整形列为禁入行业。",
+      "suggestion": "删除相关表述",
+      "ruleSource": "小红书品牌号社区运营规范（禁入行业）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://dc.xhscdn.com/file/c947aa537be9e80d802226374b5c710f/%E5%93%81%E7%89%8C%E5%8F%B7%E7%A4%BE%E5%8C%BA%E8%BF%90%E8%90%A5%E8%A7%84%E8%8C%83.pdf",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "整形",
+      "category": "医疗功效",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书品牌号社区运营规范将整容整形列为禁入行业。",
+      "suggestion": "删除相关表述",
+      "ruleSource": "小红书品牌号社区运营规范（禁入行业）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://dc.xhscdn.com/file/c947aa537be9e80d802226374b5c710f/%E5%93%81%E7%89%8C%E5%8F%B7%E7%A4%BE%E5%8C%BA%E8%BF%90%E8%90%A5%E8%A7%84%E8%8C%83.pdf",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "特效",
+      "category": "医疗功效",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "常与药妆功效绑定，小红书广告规则明确非医疗类普通产品不得宣称特殊功效词。",
+      "suggestion": "改为护肤感受描述，避免与药品功效混淆",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "瘦身",
+      "category": "医疗功效",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "如涉及功效保证则属违规，视频号运营规范 5.5.4 禁止以浮夸描述煽动人群。",
+      "suggestion": "改为生活方式建议，不承诺效果",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "美白",
+      "category": "医疗功效",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "特殊化妆品功效，需备案才能宣称。普通商品宣称美白属超出实际功能范围。",
+      "suggestion": "如为特殊化妆品需提供备案凭证；否则改为提亮肤色感受描述",
+      "ruleSource": "小红书广告规则（功效与保证性承诺）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "膳食补充剂",
+      "category": "医疗功效",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "未取得蓝帽子保健食品批文前只能按普通食品宣传，不得宣称功效。",
+      "suggestion": "按普通食品宣传，删除任何功效表述",
+      "ruleSource": "小红书广告规则（大健康与美妆类目要求）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "增肌",
+      "category": "医疗功效",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu"
+      ],
+      "reason": "本身为运动健身术语，不违规；但如承诺具体效果则属虚假宣传。",
+      "suggestion": "改为训练建议，注明因人而异",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "蓝帽子",
+      "category": "医疗功效",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "本身是保健食品批准标志，不违规，但使用时须有对应批文，不得虚构。",
+      "suggestion": "如无批文不得使用该标志",
+      "ruleSource": "小红书广告规则（大健康与美妆类目要求）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "V我",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "引导站外支付的谐音表述，属小红书交易导流违规管理细则禁止范围；电子资源类目亦禁止转账至个人售卖。",
+      "suggestion": "删除该表述，改为平台内交易路径",
+      "ruleSource": "小红书《交易导流违规管理细则》 / 小红书品牌号社区运营规范（电子资源须平台内交易）",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://dc.xhscdn.com/file/c947aa537be9e80d802226374b5c710f/%E5%93%81%E7%89%8C%E5%8F%B7%E7%A4%BE%E5%8C%BA%E8%BF%90%E8%90%A5%E8%A7%84%E8%8C%83.pdf",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "不点赞不是中国人",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "胁迫性诱导互动，视频号运营规范 4.4.2 明确列出此类用语为违规示例。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》4.4.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "分享抽奖",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 4.4.1 明确将分享可增加抽奖机会列为违规诱导分享。",
+      "suggestion": "删除诱导分享表述",
+      "ruleSource": "《微信视频号运营规范》4.4.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "加了微信",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu",
+        "douyin"
+      ],
+      "reason": "小红书《交易导流违规管理细则》（2026-09-18 生效）覆盖所有用户，禁止在笔记、评论、图片、视频、直播、商品、私聊、个人主页、群聊任何位置引导或暗示加微信、QQ 或站外交易。",
+      "suggestion": "删除导流表述，改为引导至平台内官方组件或主页",
+      "ruleSource": "抖音电商创作者违规管理规则（导流违规：昵称/简介/视频/直播/评论区全场景禁止留「微信联系方式」等） / 小红书《交易导流违规管理细则》",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "调研已核实：抖音全场景禁止留微信，二维码、谐音、暗语同样在判定范围。"
+    },
+    {
+      "term": "加微",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu",
+        "douyin"
+      ],
+      "reason": "同属导流违规，微信生态内亦禁止引导至站外交易。视频号运营规范 4.8.3 禁止传播违反《微信外部链接内容管理规范》的链接内容。",
+      "suggestion": "删除导流表述",
+      "ruleSource": "抖音电商创作者违规管理规则（导流违规：昵称/简介/视频/直播/评论区全场景禁止留微信、QQ、二维码） / 小红书《交易导流违规管理细则》 / 《微信视频号运营规范》4.8.3",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "调研已核实：抖音全场景禁止留微信，二维码、谐音、暗语同样在判定范围。",
+      "sentenceRules": [
+        {
+          "from": "加微",
+          "to": "看主页",
+          "example": "加微 → 看主页"
+        }
+      ]
+    },
+    {
+      "term": "威信",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu",
+        "douyin"
+      ],
+      "reason": "微信谐音写法。此类变体均被平台导流检测覆盖，使用即判定为引导站外交易。",
+      "suggestion": "删除该表述，使用平台内官方组件",
+      "ruleSource": "抖音电商创作者违规管理规则（导流违规：昵称/简介/视频/直播/评论区全场景禁止留微信、QQ、二维码） / 小红书《交易导流违规管理细则》 / 《微信视频号运营规范》4.8.3",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "调研已核实：抖音全场景禁止留微信，二维码、谐音、暗语同样在判定范围。"
+    },
+    {
+      "term": "威信同号",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu",
+        "douyin"
+      ],
+      "reason": "站外联系方式导流，小红书规则覆盖个人主页、私聊等全部场景。",
+      "suggestion": "删除该表述",
+      "ruleSource": "抖音电商创作者违规管理规则（导流违规：昵称/简介/视频/直播/评论区全场景禁止留「微信联系方式」等） / 小红书《交易导流违规管理细则》",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "调研已核实：抖音全场景禁止留微信，二维码、谐音、暗语同样在判定范围。"
+    },
+    {
+      "term": "手机号联系",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "站外联系方式导流，视频号运营规范 4.8.3 亦禁止。",
+      "suggestion": "删除该表述",
+      "ruleSource": "小红书《交易导流违规管理细则》 / 《微信视频号运营规范》4.8.3",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "扫码进群",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "引导站外，小红书交易导流违规管理细则覆盖群聊场景；视频号运营规范 4.8.2 禁止传播具有识别标记功能的特殊识别码。",
+      "suggestion": "删除该表述，改为平台内官方社群组件",
+      "ruleSource": "小红书《交易导流违规管理细则》 / 《微信视频号运营规范》4.8.2",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "某宝",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "指向站外电商平台的谐音写法，属引导站外交易范畴。",
+      "suggestion": "删除该表述",
+      "ruleSource": "小红书《交易导流违规管理细则》",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "求收藏",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "诱导互动，视频号运营规范 4.4.1 将利诱用户收藏列为违规。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》4.4.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "求点赞",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "诱导互动，视频号运营规范 4.4 明确将利诱用户点赞列为违规。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》4.4.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "点赞抽奖",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 4.4.1 明确将利诱用户点赞列为违规。",
+      "suggestion": "删除诱导互动表述",
+      "ruleSource": "《微信视频号运营规范》4.4.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "私信我",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao"
+      ],
+      "reason": "抖音电商明确规定，创作者使用模糊话术引导消费者私信沟通即被判诱导第三方，且该判定针对引导用户在抖音站内私信你，已 100% AI 识别拦截。",
+      "suggestion": "删除引导私信表述，改为引导至平台内官方组件",
+      "ruleSource": "抖音电商规则（诱导第三方） / 《微信视频号运营规范》4.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则 / 《抖音社区自律公约》（该章节号未核实，请以官方最新公示为准）",
+        "shipinhao": "抖音电商规则（诱导第三方） / 《微信视频号运营规范》4.4"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "调研已核实：抖音电商规定引导私信即判\"诱导第三方\"，2026 年已 100% AI 识别拦截，不导站外同样违规。",
+      "sentenceRules": [
+        {
+          "from": "私信我",
+          "to": "在评论区留言",
+          "example": "私信我 → 在评论区留言"
+        }
+      ]
+    },
+    {
+      "term": "私信领取资料",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu"
+      ],
+      "reason": "引导站内私信属抖音诱导第三方判定范围，小红书亦禁止引导至站外获取利益。",
+      "suggestion": "删除该表述，改为平台内合规承接路径",
+      "ruleSource": "抖音电商规则（诱导第三方） / 小红书《交易导流违规管理细则》",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "评论区扣1",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu",
+        "douyin"
+      ],
+      "reason": "小红书禁止评论扣 1 等诱导互动，判定为操纵数据、降低笔记分发权重；视频号运营规范 4.4.1 明确利诱用户分享、关注、点赞、评论属违规。",
+      "suggestion": "删除诱导互动表述，改为自然邀请讨论",
+      "ruleSource": "抖音电商创作者违规管理规则（诱导互动：模糊话术引导评论区互动即判诱导第三方） / 小红书社区规范（诱导互动） / 《微信视频号运营规范》4.4.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "platformSources": {
+        "douyin": [
+          "《微信视频号运营规范》4.4.1"
+        ],
+        "xiaohongshu": [
+          "小红书社区规范（诱导互动）",
+          "《微信视频号运营规范》4.4.1"
+        ],
+        "shipinhao": [
+          "《微信视频号运营规范》4.4.1"
+        ]
+      },
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）",
+        "douyin": "抖音电商创作者违规管理规则（诱导互动：模糊话术引导评论区互动即判诱导第三方）（该章节号未核实，请以官方最新公示为准）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial",
+        "douyin": "verified"
+      },
+      "sourceNote": "调研已核实：抖音对\"评论区扣1\"类互动诱导话术判定最严，且不导站外同样违规。",
+      "sentenceRules": [
+        {
+          "from": "评论区扣1",
+          "to": "欢迎留言讨论",
+          "example": "评论区扣1 → 欢迎留言讨论"
+        }
+      ]
+    },
+    {
+      "term": "转发后一生平安",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "胁迫性诱导转发，视频号运营规范 4.4.2 明确列为违规示例。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》4.4.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "转发抽奖",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 4.4.2 禁止胁迫煽动用户转发，4.4.1 禁止利诱转发。",
+      "suggestion": "删除诱导转发表述",
+      "ruleSource": "《微信视频号运营规范》4.4.1 / 4.4.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "邀请好友得",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 4.4.1 明确将邀请好友拆礼物、集赞、分享可增加抽奖机会等利诱用户分享的行为列为违规。",
+      "suggestion": "删除诱导分享表述",
+      "ruleSource": "《微信视频号运营规范》4.4.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "集赞",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 4.4.1 明确将集赞列为利诱用户分享关注点赞评论的违规行为。",
+      "suggestion": "删除集赞表述",
+      "ruleSource": "《微信视频号运营规范》4.4.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "关注领资料",
+      "category": "导流违规",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 4.4.1 将利诱用户关注列为违规；如涉及站外资料则另涉导流违规。",
+      "suggestion": "删除诱导关注表述",
+      "ruleSource": "《微信视频号运营规范》4.4.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "帮我砍一刀",
+      "category": "导流违规",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "诱导分享类，视频号运营规范 4.4.1 明确禁止。",
+      "suggestion": "删除诱导分享表述",
+      "ruleSource": "《微信视频号运营规范》4.4.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "淘宝同款",
+      "category": "导流违规",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "指向站外交易平台，属引导站外交易范畴。",
+      "suggestion": "改为商品特征描述，不指向具体站外平台",
+      "ruleSource": "小红书《交易导流违规管理细则》",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "点击链接购买",
+      "category": "导流违规",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "站外交易链接，视频号运营规范 4.8.3 明确禁止传播违反《微信外部链接内容管理规范》的链接。",
+      "suggestion": "改为平台内官方商品或组件",
+      "ruleSource": "《微信视频号运营规范》4.8.3",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "砍一刀",
+      "category": "导流违规",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 4.4.1 禁止利诱用户分享，集赞砍价类玩法属诱导分享。",
+      "suggestion": "改为平台内官方拼团工具",
+      "ruleSource": "《微信视频号运营规范》4.4.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "AI生成未标注",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "2026-04 起全平台强制标识 AI 生成内容。未标注限流 50%-80%，第一次违规直接下架，多次隐瞒扣除账号信用分并限制商业权限。",
+      "suggestion": "务必完成标识；抖音规范标注且有人工修改痕迹的内容可进入合规 AI 内容专属流量池",
+      "ruleSource": "《人工智能生成合成内容标识办法》 / 各平台 AI 治理规则",
+      "ruleDate": "2025-03-14",
+      "ruleUrl": "https://www.cac.gov.cn/2025-03/14/c_1743654684782215.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日"
+    },
+    {
+      "term": "AI虚拟人未标注",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书 2026-08 升级 AI 治理规则，要求 AI 虚拟人账号须在资料页如实说明并开启 AI 虚拟人标签，未开启即违规。",
+      "suggestion": "在资料页如实说明并开启 AI 虚拟人标签",
+      "ruleSource": "小红书 AI 治理规则（2026-08 升级）",
+      "ruleDate": "2026-08-01",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "专供",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "同特供类违规表述。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》3.6.4 / 《广告法》",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "两性用品",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "《抖音社区自律公约》五明确将两性用品广告列为禁止发布内容。",
+      "suggestion": "删除相关表述",
+      "ruleSource": "《抖音社区自律公约》五",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）"
+      },
+      "platformVerified": {
+        "douyin": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "买卖账号",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 4.1.1 与 4.5 明确禁止买卖视频号及非法买卖出租出借个人账号。",
+      "suggestion": "删除相关表述，此类行为违规",
+      "ruleSource": "《微信视频号运营规范》4.1.1 / 4（禁止恶意使用）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "买粉",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "同刷量类违规，视频号运营规范 4.5.1 明确禁止。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》4.5.1 / 《小红书社区规范》4.4.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "互赞互评",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书治理规则明确互赞互评、买粉刷藏、刷评论等异常数据行为会打乱账号人群标签，严重时清零笔记数据。",
+      "suggestion": "删除该行为，账号标签混乱会直接导致内容无法推送给正确人群",
+      "ruleSource": "小红书社区规范（账号运营行为风控）",
+      "ruleDate": "2026-10-01",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "人肉搜索",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "《抖音社区自律公约》一明确禁止人肉搜索与线下骚扰。",
+      "suggestion": "删除相关表述，此类行为违法",
+      "ruleSource": "《抖音社区自律公约》一",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）"
+      },
+      "platformVerified": {
+        "douyin": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "代孕",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu"
+      ],
+      "reason": "《抖音社区自律公约》五明确禁止宣传推广非法医疗服务如代孕；小红书品牌号社区运营规范将代孕列为禁入行业。",
+      "suggestion": "删除相关表述，此类行业禁止入驻",
+      "ruleSource": "《抖音社区自律公约》五 / 小红书品牌号社区运营规范（禁入行业）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://dc.xhscdn.com/file/c947aa537be9e80d802226374b5c710f/%E5%93%81%E7%89%8C%E5%8F%B7%E7%A4%BE%E5%8C%BA%E8%BF%90%E8%90%A5%E8%A7%84%E8%8C%83.pdf",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "代开发票",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "《抖音社区自律公约》五明确禁止倒卖发票、伪造文件印章等违法内容。",
+      "suggestion": "删除相关表述，此类服务属违法",
+      "ruleSource": "《抖音社区自律公约》五（违规或违法交易）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）"
+      },
+      "platformVerified": {
+        "douyin": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "传销",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao"
+      ],
+      "reason": "《抖音社区自律公约》五明确禁止宣传推广传销组织及其产品或活动；视频号运营规范 4.6.1 禁止传销行为。",
+      "suggestion": "删除相关表述，此类内容违法",
+      "ruleSource": "《抖音社区自律公约》五 / 《微信视频号运营规范》4.6.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "低俗",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 5.9 明确禁止低俗内容，包括性暗示、侮辱性羞辱性用语、违背社会基本伦理道德等。",
+      "suggestion": "删除低俗表述",
+      "ruleSource": "《微信视频号运营规范》5.9",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "催熟",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "常用于激素类农产品违规宣传，视频号运营规范 5.5.4 禁止编造故事误导用户。",
+      "suggestion": "如实标注农产品属性",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "刷单",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "虚假交易属违法行为，视频号运营规范 4.5 明确禁止刷量刷粉，小红书社区规范 4.4.4 禁止产生虚假数据。",
+      "suggestion": "删除该表述，刷单属违法行为",
+      "ruleSource": "《微信视频号运营规范》4.5 / 《小红书社区规范》4.4.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "刷粉",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 4.5 明确禁止通过非正常手段获取虚假粉丝数据。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》4.5",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "刷量",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 4.5 明确禁止通过非正常手段获取虚假数据，小红书社区规范 4.4.4 同样禁止。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》4.5",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "办证",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao"
+      ],
+      "reason": "《抖音社区自律公约》五禁止制作买卖推广假冒伪劣物品及相关服务，包括假证。视频号运营规范 3.6.9 禁止为违法行为沟通实施便利的命名。",
+      "suggestion": "删除相关表述，此类服务属违法",
+      "ruleSource": "《抖音社区自律公约》五 / 《微信视频号运营规范》3.6.9",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "卖丑",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "《微信视频号运营规范》5.10 明确禁止扮丑以实现吸引互动或推广商品的目的。",
+      "suggestion": "删除该内容",
+      "ruleSource": "《微信视频号运营规范》5.10",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "卖惨",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "《微信视频号运营规范》5.10 明确禁止通过虚构事实、编造故事发布卖惨内容，或扮丑以实现吸引点赞、转发、关注或推广商品的目的。",
+      "suggestion": "删除卖惨内容，改为如实记录",
+      "ruleSource": "《微信视频号运营规范》5.10",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "博彩",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "同赌博类禁止内容。",
+      "suggestion": "删除相关表述",
+      "ruleSource": "《抖音社区自律公约》五",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）"
+      },
+      "platformVerified": {
+        "douyin": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "地域歧视",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 5.2.6 明确禁止煽动人群歧视、地域歧视。抖音社区自律公约亦禁止民族歧视性内容。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》5.2.6 / 《抖音社区自律公约》",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "外挂",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 4.3 明确禁止未经书面许可使用插件、外挂或其他第三方工具接入微信系统；4.5.2 禁止制作发布与刷量刷粉相关的工具内容。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》4.3 / 4.5.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "引战",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "小红书品牌号社区运营规范明确将恶意煽动用户攻击、孤立或以其他手段不友善地对待其他用户列为侵权不友善行为；视频号运营规范 5.5.3 禁止煽动人群对立。",
+      "suggestion": "删除对立表述，改为就事论事的讨论",
+      "ruleSource": "小红书品牌号社区运营规范（不友善行为） / 《微信视频号运营规范》5.5.3",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://dc.xhscdn.com/file/c947aa537be9e80d802226374b5c710f/%E5%93%81%E7%89%8C%E5%8F%B7%E7%A4%BE%E5%8C%BA%E8%BF%90%E8%90%A5%E8%A7%84%E8%8C%83.pdf",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "彩票",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "《抖音社区自律公约》五禁止宣传赌博服务或被视为赌场、体育博彩的内容。",
+      "suggestion": "删除相关表述",
+      "ruleSource": "《抖音社区自律公约》五",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）"
+      },
+      "platformVerified": {
+        "douyin": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "恐怖",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao"
+      ],
+      "reason": "《抖音社区自律公约》一明确禁止恐怖主义与极端主义内容；视频号运营规范 5.8 禁止令人极度不适的内容。",
+      "suggestion": "删除恐怖内容",
+      "ruleSource": "《抖音社区自律公约》一 / 《微信视频号运营规范》5.8",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "打投",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 3.8 明确禁止明星艺人打投、集资等账号内容。",
+      "suggestion": "删除相关表述",
+      "ruleSource": "《微信视频号运营规范》3.8",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "批量注册",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "视频号运营规范 3.7 与 4.1.1 明确禁止批量注册大量相似视频号；小红书社区规范 4.4.2 禁止滥用权重开设多个账号。",
+      "suggestion": "删除相关行为，一个账号仅注册一个视频号",
+      "ruleSource": "《微信视频号运营规范》3.7 / 4.1.1 / 《小红书社区规范》4.4.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "投资建议",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao"
+      ],
+      "reason": "《抖音社区财经行业公约》2.1禁止资质仿冒与虚假标识，视频号运营规范 4.6.2 禁止未经许可的投资咨询活动。",
+      "suggestion": "如需提供投资相关内容，需取得相应资质并经平台认证",
+      "ruleSource": "《抖音社区财经行业公约》2.1 / 《微信视频号运营规范》4.6.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://findeross.weixin.qq.com/cgi-bin/mmfindernodelivecrmwebbroker-bin/helper-center/pages/eeGC6A9rFfgzd61X",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "挑动对立",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 5.2.6 明确禁止煽动人群歧视、地域歧视等内容。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》5.2.6",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "推荐股票",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao"
+      ],
+      "reason": "《抖音社区财经行业公约》禁止未经平台资质认证的账号发布财经专业内容、推荐财经专业服务与产品；视频号运营规范 4.6.2 禁止未经许可荐股。",
+      "suggestion": "如需发布财经内容，完成平台财经专业资质认证后再发布",
+      "ruleSource": "《抖音社区财经行业公约》2.1 / 《微信视频号运营规范》4.6.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://aweme.snssdk.com/falcon/fe_douyin_security_react/rule/norm_content/?commerce_id=aJbVQR5DFRg4&hide_nav_bar=1",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "擦边",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 5.2.4 禁止带有性暗示、性挑逗等易使人产生性联想的内容；5.9.2 禁止借助文字声音物品或行为进行性暗示。",
+      "suggestion": "删除相关表述",
+      "ruleSource": "《微信视频号运营规范》5.2.4 / 5.9.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "暴力",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao"
+      ],
+      "reason": "《抖音社区自律公约》一明确禁止展示或宣扬暴力；视频号运营规范 5.8.3 禁止含暴力内容如家暴、校园暴力、斗殴。",
+      "suggestion": "删除暴力内容",
+      "ruleSource": "《抖音社区自律公约》一 / 《微信视频号运营规范》5.8.3",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "比特币",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu"
+      ],
+      "reason": "小红书品牌号社区运营规范将比特币交易列为禁入行业；抖音社区财经行业公约禁止违规金融内容推广。",
+      "suggestion": "删除相关表述，金融投资类内容需资质认证",
+      "ruleSource": "小红书品牌号社区运营规范（禁入行业） / 《抖音社区财经行业公约》",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://dc.xhscdn.com/file/c947aa537be9e80d802226374b5c710f/%E5%93%81%E7%89%8C%E5%8F%B7%E7%A4%BE%E5%8C%BA%E8%BF%90%E8%90%A5%E8%A7%84%E8%8C%83.pdf",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "点赞员",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao"
+      ],
+      "reason": "《抖音社区自律公约》一明确提示网络兼职点赞员属网络诈骗高发领域；视频号运营规范 4.5 禁止刷量。",
+      "suggestion": "删除相关表述，此类兼职多涉诈骗",
+      "ruleSource": "《抖音社区自律公约》一（六） / 《微信视频号运营规范》4.5",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "烟草",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao"
+      ],
+      "reason": "《抖音社区自律公约》五明确禁止烟草广告；视频号运营规范 4.6.1 禁止销售烟草。",
+      "suggestion": "删除相关表述",
+      "ruleSource": "《抖音社区自律公约》五 / 《微信视频号运营规范》4.6.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://findeross.weixin.qq.com/cgi-bin/mmfindernodelivecrmwebbroker-bin/helper-center/pages/eeGC6A9rFfgzd61X",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "特供",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "「特供」「专供」等表述违反广告法与相关规定，视频号运营规范 3.6.4 禁止有歧义误导用户的命名。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》3.6.4 / 《广告法》",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "病毒",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 5.6.2 明确禁止发送病毒、文件、计算机代码或程序可能对微信消息发送服务运行造成损害的内容。",
+      "suggestion": "删除相关表述",
+      "ruleSource": "《微信视频号运营规范》5.6.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "私家侦探",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu"
+      ],
+      "reason": "《抖音社区自律公约》五明确禁止宣传推广非法交易服务如私家侦探；小红书品牌号规范将其列为禁入行业。",
+      "suggestion": "删除相关表述",
+      "ruleSource": "《抖音社区自律公约》五 / 小红书品牌号社区运营规范",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "租号",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范四明确禁止非法买卖、出租、出借个人账号。",
+      "suggestion": "删除相关表述",
+      "ruleSource": "《微信视频号运营规范》四（禁止恶意使用）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "粉丝控评",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 3.8 明确禁止创建涉及明星艺人的打投、集资、控评、八卦、爆料等相关账号。",
+      "suggestion": "删除相关表述",
+      "ruleSource": "《微信视频号运营规范》3.8",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "胎儿性别鉴定",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu"
+      ],
+      "reason": "《抖音社区自律公约》五明确禁止宣传推广胎儿性别鉴定等内容；小红书品牌号规范亦将其列为禁入。",
+      "suggestion": "删除相关表述，此类内容违法",
+      "ruleSource": "《抖音社区自律公约》五 / 小红书品牌号社区运营规范",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "脏话",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 5.5.1 明确禁止使用侮辱、脏话词汇引人不适。",
+      "suggestion": "删除相关表述",
+      "ruleSource": "《微信视频号运营规范》5.5.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "血腥",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 5.2.5 明确禁止展现血腥、惊悚、残忍等致人身心不适的内容。",
+      "suggestion": "删除血腥画面",
+      "ruleSource": "《微信视频号运营规范》5.2.5",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "试管婴儿",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书品牌号社区运营规范将试管婴儿列为禁入行业；《抖音社区自律公约》禁止非法医疗服务宣传。",
+      "suggestion": "删除相关表述",
+      "ruleSource": "小红书品牌号社区运营规范（禁入行业）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://dc.xhscdn.com/file/c947aa537be9e80d802226374b5c710f/%E5%93%81%E7%89%8C%E5%8F%B7%E7%A4%BE%E5%8C%BA%E8%BF%90%E8%90%A5%E8%A7%84%E8%8C%83.pdf",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "诱导消费",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 4.4.3 明确禁止诱导未成年人应援消费；5.7.8 禁止展示未成年人婚育内容。",
+      "suggestion": "删除诱导消费表述",
+      "ruleSource": "《微信视频号运营规范》4.4.3 / 5.7",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "谣言",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao"
+      ],
+      "reason": "《抖音社区自律公约》二（时政有害及不实信息）与《微信视频号运营规范》5.4 明确禁止散布不实信息扰乱社会秩序。抖音社区自律公约倡导不造谣、不传谣，并鼓励经济、教育、医疗卫生、司法等专业人士通过平台认证发布权威信息。",
+      "suggestion": "涉及事实类内容需添加拍摄时间地点；引用他人内容需添加引用来源",
+      "ruleSource": "《抖音社区自律公约》二 / 《微信视频号运营规范》5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "贷款",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao"
+      ],
+      "reason": "《抖音社区自律公约》一明确提示贷款返利等属网络诈骗高发领域；视频号运营规范 4.6.2 禁止违规金融推广。",
+      "suggestion": "如提供贷款服务需相应资质，用户应警惕贷款类诈骗",
+      "ruleSource": "《抖音社区自律公约》一（六） / 《微信视频号运营规范》4.6.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "赌博",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu"
+      ],
+      "reason": "《抖音社区自律公约》五明确禁止组织赌博活动、招募赌博人员；小红书品牌号社区运营规范将赌博列为禁入内容。",
+      "suggestion": "删除相关表述，赌博内容属违法信息",
+      "ruleSource": "《抖音社区自律公约》五（赌博等非法射幸活动） / 小红书品牌号社区运营规范",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://dc.xhscdn.com/file/c947aa537be9e80d802226374b5c710f/%E5%93%81%E7%89%8C%E5%8F%B7%E7%A4%BE%E5%8C%BA%E8%BF%90%E8%90%A5%E8%A7%84%E8%8C%83.pdf",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "跟踪",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "《抖音社区自律公约》一明确禁止通过曝光隐私、公开披露他人真实身份信息等方式帮助、教唆或组织对他人发起人身攻击、人肉搜索、线下骚扰。",
+      "suggestion": "删除相关表述，此类行为涉及法律责任",
+      "ruleSource": "《抖音社区自律公约》一（帮助实施或教唆犯罪）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）"
+      },
+      "platformVerified": {
+        "douyin": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "辱骂",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao"
+      ],
+      "reason": "《抖音社区自律公约》一明确禁止攻击、谩骂、侮辱、诽谤、歧视他人；视频号运营规范 5.5.1 禁止使用侮辱、脏话词汇。",
+      "suggestion": "删除辱骂表述",
+      "ruleSource": "《抖音社区自律公约》一 / 《微信视频号运营规范》5.5.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "钓鱼网站",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "视频号运营规范 5.6.1 明确禁止发送钓鱼网站等信息诱使用户上当受骗蒙受损失；小红书品牌号规范将使用第三方网站伪造跳转链接列为禁入内容。",
+      "suggestion": "删除相关表述",
+      "ruleSource": "《微信视频号运营规范》5.6.1 / 小红书品牌号社区运营规范",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://dc.xhscdn.com/file/c947aa537be9e80d802226374b5c710f/%E5%93%81%E7%89%8C%E5%8F%B7%E7%A4%BE%E5%8C%BA%E8%BF%90%E8%90%A5%E8%A7%84%E8%8C%83.pdf",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "集资",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 3.8 明确禁止明星艺人集资相关账号；4.6.1 禁止传销等违法营销。",
+      "suggestion": "删除相关表述，集资涉及法律责任",
+      "ruleSource": "《微信视频号运营规范》3.8 / 4.6.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "香烟",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao"
+      ],
+      "reason": "《抖音社区自律公约》五明确将烟草广告列为禁止发布内容；视频号运营规范 4.6.1 禁止销售烟草。",
+      "suggestion": "删除相关表述；该类商品广告属平台禁止内容，且不得以任何形式推广。",
+      "ruleSource": "《抖音社区自律公约》五 / 《微信视频号运营规范》4.6.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "黑客攻击",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao"
+      ],
+      "reason": "《抖音社区自律公约》一明确禁止发起黑客攻击；视频号运营规范 5.6.2 禁止发送病毒文件计算机代码程序。",
+      "suggestion": "删除相关表述，此类内容涉及法律责任",
+      "ruleSource": "《抖音社区自律公约》一 / 《微信视频号运营规范》5.6.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "AI生成",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "人工智能生成合成内容标识办法要求对 AI 生成合成内容进行显著标识。小红书要求 AI 参与配图、改写、润色均需勾选含 AI 生成内容标签，漏标第一次笔记下架警告，多次隐瞒直接扣账号信用分。抖音要求封面标注并在开头 3-5 秒全屏显示。",
+      "suggestion": "按平台要求完成标识：抖音封面标注 + 开头 3-5 秒全屏显示；小红书勾选含 AI 生成内容标签；图文首尾标注与图片水印",
+      "ruleSource": "《人工智能生成合成内容标识办法》 / 小红书 AI 治理规则（2026-08 升级） / 抖音 AI 内容标识规则",
+      "ruleDate": "2025-03-14",
+      "ruleUrl": "https://www.cac.gov.cn/2025-03/14/c_1743654684782215.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日"
+    },
+    {
+      "term": "中奖",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao"
+      ],
+      "reason": "《抖音社区自律公约》一明确提示中奖属网络诈骗高发领域，视频号运营规范 4.11 禁止欺诈可疑不诚信内容。",
+      "suggestion": "如为真实抽奖需说明规则与时间",
+      "ruleSource": "《抖音社区自律公约》一（六） / 《微信视频号运营规范》4.11",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "亲子鉴定",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书品牌号社区运营规范将亲子鉴定列为禁入行业宣传信息。",
+      "suggestion": "删除相关表述",
+      "ruleSource": "小红书品牌号社区运营规范（禁入行业）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://dc.xhscdn.com/file/c947aa537be9e80d802226374b5c710f/%E5%93%81%E7%89%8C%E5%8F%B7%E7%A4%BE%E5%8C%BA%E8%BF%90%E8%90%A5%E8%A7%84%E8%8C%83.pdf",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "偷",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "《抖音社区自律公约》一禁止帮助实施或教唆犯罪，包括帮助他人非法占有财物；视频号运营规范禁止教唆偷盗行为。",
+      "suggestion": "删除相关表述",
+      "ruleSource": "《抖音社区自律公约》一（帮助实施或教唆犯罪）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）"
+      },
+      "platformVerified": {
+        "douyin": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "免实名",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "如涉及需资质的行业则违规，视频号运营规范 4.9.1 禁止使用虚假信息。",
+      "suggestion": "如实说明资质要求",
+      "ruleSource": "《微信视频号运营规范》4.9.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "养号",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "属平台运营灰产术语，视频号运营规范 4.1.1 禁止提供虚假信息注册与批量注册。",
+      "suggestion": "删除该术语，正常运营即可",
+      "ruleSource": "《微信视频号运营规范》4.1.1 / 《小红书社区规范》4.4.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "别买",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu",
+        "shipinhao"
+      ],
+      "reason": "无据的负面结论可能构成商誉侵害，视频号运营规范 5.3.3 禁止损害他人名誉商誉。",
+      "suggestion": "改为说明不适合的人群与原因",
+      "ruleSource": "《微信视频号运营规范》5.3.3 / 《小红书社区公约》5.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《微信视频号运营规范》5.3.3 / 《小红书社区公约》5.2",
+        "shipinhao": "《微信视频号运营规范》5.3.3 / 《小红书社区公约》5.2"
+      },
+      "platformVerified": {
+        "xiaohongshu": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》相关章节（已核实）；【视频号】《微信视频号运营规范》相关章节（已核实）"
+    },
+    {
+      "term": "副业",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "如与收益承诺搭配易构成虚假宣传，视频号运营规范 5.5.4 禁止编造快速赚钱经历。",
+      "suggestion": "分享真实经历，不承诺收益",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "千人疯抢",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "如无真实数据则构成虚假宣传，涉嫌虚构交易热度。",
+      "suggestion": "标注真实数据来源",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "博同情",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 5.10 禁止以不当方式吸引用户互动，视频号运营规范 4.4.3 禁止诱导未成年人应援消费。",
+      "suggestion": "删除该内容",
+      "ruleSource": "《微信视频号运营规范》5.10 / 4.4.3",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "命理",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "同属封建迷信范畴，《抖音社区自律公约》二禁止。",
+      "suggestion": "删除命理类表述",
+      "ruleSource": "《抖音社区自律公约》二",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）"
+      },
+      "platformVerified": {
+        "douyin": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "垃圾信息",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao"
+      ],
+      "reason": "《抖音社区自律公约》五明确禁止散布垃圾信息；视频号运营规范 4.8.1 禁止频繁发送骚扰信息、垃圾信息、广告信息。",
+      "suggestion": "删除重复无关内容",
+      "ruleSource": "《抖音社区自律公约》五 / 《微信视频号运营规范》4.8.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "开光",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "涉及宗教信仰与封建迷信用品宣传，《抖音社区自律公约》二禁止宣扬邪教和封建迷信。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《抖音社区自律公约》二",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）"
+      },
+      "platformVerified": {
+        "douyin": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "微商",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书品牌号社区运营规范将三无微商列为禁入行业；视频号运营规范 4.6.1 禁止传销等违法犯罪行为。",
+      "suggestion": "如有正规经营资质，改用平台官方商品与资质号功能",
+      "ruleSource": "小红书品牌号社区运营规范（禁入行业）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://dc.xhscdn.com/file/c947aa537be9e80d802226374b5c710f/%E5%93%81%E7%89%8C%E5%8F%B7%E7%A4%BE%E5%8C%BA%E8%BF%90%E8%90%A5%E8%A7%84%E8%8C%83.pdf",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "微商货源",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书品牌号社区运营规范将三无微商列为禁入行业；视频号运营规范 4.6.1 禁止传销等违法营销。",
+      "suggestion": "删除相关表述",
+      "ruleSource": "小红书品牌号社区运营规范（禁入行业）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://dc.xhscdn.com/file/c947aa537be9e80d802226374b5c710f/%E5%93%81%E7%89%8C%E5%8F%B7%E7%A4%BE%E5%8C%BA%E8%BF%90%E8%90%A5%E8%A7%84%E8%8C%83.pdf",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "性感",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 5.2.4 禁止易使人产生性联想的表述。",
+      "suggestion": "改为具体的风格描述",
+      "ruleSource": "《微信视频号运营规范》5.2.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "恶意营销",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "《抖音社区自律公约》五明确未经平台许可禁止散布商业广告或类似的商业招揽信息、过度营销信息及垃圾信息。",
+      "suggestion": "如需推广请使用平台官方商业推广工具并完成资质报备",
+      "ruleSource": "《抖音社区自律公约》五（违规或违法交易）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）"
+      },
+      "platformVerified": {
+        "douyin": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "打药",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "涉及农产品安全，视频号运营规范 5.5.4 禁止编造故事误导用户。",
+      "suggestion": "如实标注种植方式",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "批量发布",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书社区规范 4.4.3 禁止非正常模式发布笔记（如批量发布、高频发布、机器发布），平台原创识别模型升级后对同质化内容做流量降权处理。",
+      "suggestion": "改为 4-3-2-1 内容配比：40%垂直干货、30%真实体验、20%热点、10%创新测试",
+      "ruleSource": "《小红书社区规范》4.4.3",
+      "ruleDate": "2026-10-01",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "招财",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "涉及封建迷信或虚假承诺，视频号运营规范 5.5.4 禁止编造故事煽动情绪。",
+      "suggestion": "改为产品功能描述",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "改命",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "《抖音社区自律公约》二禁止破坏国家宗教政策、宣扬邪教和封建迷信的内容，这类表述存在导向风险。",
+      "suggestion": "改为改善方法类表述",
+      "ruleSource": "《抖音社区自律公约》二（时政有害及不实信息）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）"
+      },
+      "platformVerified": {
+        "douyin": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "无货源",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "常与传销/微商骗局关联，视频号运营规范 4.6.1 禁止传销等违法营销。",
+      "suggestion": "如实说明供应链模式",
+      "ruleSource": "《微信视频号运营规范》4.6.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "智商税",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "贬损性表述，若指向具体商家可能构成商誉侵害。小红书社区规范 5.2禁止损害他人商誉。",
+      "suggestion": "改为中性的产品分析，不作贬损定性",
+      "ruleSource": "《小红书社区公约》5.2",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "未成年人",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 5.7 明确列出一系列有损未成年人身心健康的内容禁止项；5.4.3 禁止诱导未成年人应援消费。",
+      "suggestion": "涉及未成年人的内容需符合平台未成年人保护规范",
+      "ruleSource": "《微信视频号运营规范》5.7 / 4.4.3",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "机器发布",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书社区规范 4.4.3 禁止非正常模式发布笔记（如批量发布、高频发布、机器发布），属账号运营行为风控。",
+      "suggestion": "改为人工发布并加入原创修改",
+      "ruleSource": "《小红书社区规范》4.4.3",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "标题党",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 5.2.1 明确将使用夸张标题、内容与标题严重不符列为对网络生态造成不良影响的内容。",
+      "suggestion": "标题需与内容相符",
+      "ruleSource": "《微信视频号运营规范》5.2.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "爆料",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 3.8 禁止明星艺人八卦爆料类账号；涉及他人名誉的爆料可能构成侵权。",
+      "suggestion": "如无事实依据不得发布涉他人名誉的内容",
+      "ruleSource": "《微信视频号运营规范》3.8 / 5.3.3",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "真人实测",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "如非真人实测而宣称，则构成虚假宣传，小红书治理规则明确打击 AI 虚构测评感受。",
+      "suggestion": "仅在真实实测后使用；AI 生成内容须标识",
+      "ruleSource": "小红书社区规范（内容创作新规）",
+      "ruleDate": "2026-10-05",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "矩阵号",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书社区规范 4.4.2 禁止滥用权重注册或开设多个账号开展破坏平台秩序的行为；治理规则明确矩阵账号互相搬运改写同一套文案属同质化内容。",
+      "suggestion": "使用单账号发布原创内容",
+      "ruleSource": "《小红书社区规范》4.4.2 / 小红书治理规则（严控批量同质化）",
+      "ruleDate": "2026-10-05",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "碰瓷",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书社区规范 4.4.5 禁止通过第三方谋取不正当利益、损害他人权益或干扰平台正常运行的行为，如恶意陷害、恶意举报。",
+      "suggestion": "删除该内容",
+      "ruleSource": "《小红书社区规范》4.4.5",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "穿越",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 5.5.4 禁止编造夸张猎奇故事冲击用户价值观，这类玄学设定易引发导向风险。",
+      "suggestion": "删除封建迷信类设定",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "第一桶金",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "如与收益承诺搭配则构成误导，视频号运营规范 5.5.4 禁止编造故事煽动情绪。",
+      "suggestion": "如实讲述经历",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "转运",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "同属封建迷信范畴。",
+      "suggestion": "删除转运类表述",
+      "ruleSource": "《抖音社区自律公约》二",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）"
+      },
+      "platformVerified": {
+        "douyin": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "辟邪",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "涉及封建迷信用品宣传。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《抖音社区自律公约》二",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）"
+      },
+      "platformVerified": {
+        "douyin": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "返利",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "《抖音社区自律公约》一明确提示返利属网络诈骗高发领域与行为。",
+      "suggestion": "如实说明返利规则与条件",
+      "ruleSource": "《抖音社区自律公约》一（六）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）"
+      },
+      "platformVerified": {
+        "douyin": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "酒类",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "酒类广告有特殊监管要求，视频号运营规范 3.6.4 禁止夸大宣传与欺骗性表述。",
+      "suggestion": "按酒类广告规范如实标注",
+      "ruleSource": "《微信视频号运营规范》3.6.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "震惊",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "标题党表述，视频号运营规范 5.2.1 禁止使用夸张标题、内容与标题严重不符。",
+      "suggestion": "改为具体信息说明",
+      "ruleSource": "《微信视频号运营规范》5.2.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "韭菜",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "贬损性表述，指向具体商家可能构成商誉侵害。",
+      "suggestion": "改为客观描述产品价值",
+      "ruleSource": "《小红书社区公约》5.2",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "风水",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "涉及封建迷信内容，《抖音社区自律公约》二禁止宣扬邪教和封建迷信。",
+      "suggestion": "删除风水类表述",
+      "ruleSource": "《抖音社区自律公约》二",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）"
+      },
+      "platformVerified": {
+        "douyin": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "一手货源",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "正常商品描述，若虚构则构成虚假宣传。",
+      "suggestion": "如实说明货源信息",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "一键生成",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "正常功能描述，本身不违规。",
+      "suggestion": "无需替换",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "养生",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "profile",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "⚠️【仅限账号名称场景】《微信视频号运营规范》3.6.7 禁止在账号名称中使用日常通用词汇，「养生」在列。本条不针对正文内容——正文中出现该词本身不构成违规。",
+      "suggestion": "若用于账号名：改用具体可识别的名称（如机构全称/业务名）。若用于正文：本条不适用，无需修改。",
+      "ruleSource": "《微信视频号运营规范》3.6.7",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "劝退",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "正常口语表达，本身不违规。但对特定品牌的负面评价需有依据，否则可能构成商誉侵害。",
+      "suggestion": "描述个人使用体验，避免对商家的无据负面指控",
+      "ruleSource": "《小红书社区公约》5.2（侵犯他人商业信誉）",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "劲爆",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu",
+        "shipinhao"
+      ],
+      "reason": "夸张标题党，视频号运营规范 5.2.1 禁止夸张标题与内容不符。",
+      "suggestion": "改为具体信息说明",
+      "ruleSource": "《微信视频号运营规范》5.2.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "劲爆优惠",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "夸张促销表述，如无真实依据构成误导。",
+      "suggestion": "如实标注优惠幅度",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "包邮",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "正常商品描述，若实际不包邮则构成虚假宣传。",
+      "suggestion": "明确标注包邮范围与条件",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "变现",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "正常表达。但如与收益承诺搭配则构成虚假宣传。",
+      "suggestion": "分享方法不承诺收益",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "回馈粉丝",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "正常表达。但如与虚假优惠搭配则整体构成误导。",
+      "suggestion": "如实标注优惠内容",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "娱乐",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "profile",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "⚠️【仅限账号名称场景】《微信视频号运营规范》3.6.7 禁止在账号名称中使用日常通用词汇，「娱乐」在列。本条不针对正文内容——正文中出现该词本身不构成违规。",
+      "suggestion": "若用于账号名：改用具体可识别的名称（如机构全称/业务名）。若用于正文：本条不适用，无需修改。",
+      "ruleSource": "《微信视频号运营规范》3.6.7",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "实名认证",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "该词本身中性。但抖音社区财经行业公约禁止认证欺诈行为（伪造买卖租赁资质证照申请认证）。",
+      "suggestion": "不得伪造或买卖资质证照申请认证",
+      "ruleSource": "《抖音社区财经行业公约》2.1（禁止认证欺诈行为）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://aweme.snssdk.com/falcon/fe_douyin_security_react/rule/norm_content/?commerce_id=aJbVQR5DFRg4&hide_nav_bar=1",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）"
+      },
+      "platformVerified": {
+        "douyin": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "宠粉",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "正常表达，本身不违规。",
+      "suggestion": "无需替换",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "封神",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu",
+        "shipinhao"
+      ],
+      "reason": "夸张表述，视频号运营规范 5.5.4 禁止编造夸张猎奇故事冲击价值观。",
+      "suggestion": "改为具体优缺点描述",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "小程序",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "该词本身中性。但微信小店规则禁止宣传虚拟商品/虚拟服务相关的误导性表述。",
+      "suggestion": "如实说明功能与获取方式",
+      "ruleSource": "微信小店官方规则",
+      "ruleDate": "2026-08-11",
+      "ruleUrl": "https://store.weixin.qq.com/chengzhang/webdoc/wiki/9730/7ab3758b7be0bf55/growth_center_rule_for_store?source=4",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "工厂直销",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "正常商品描述，若非工厂自有则构成虚假宣传。",
+      "suggestion": "如实说明供应链信息",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "平替",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "正常口语表达，本身不违规。但若用于贬低原品牌可能构成商誉侵害。",
+      "suggestion": "描述成分与参数差异，避免贬损性定性",
+      "ruleSource": "《小红书社区公约》5.2",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "开箱实测",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "正常表达。但小红书治理规则明确打击 AI 虚构测评感受，如非真实开箱不得使用。",
+      "suggestion": "如有真实开箱可使用；AI 生成须按平台要求标识",
+      "ruleSource": "小红书社区规范（内容创作新规）",
+      "ruleDate": "2026-10-05",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "手慢无",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "虚假紧迫感，视频号运营规范 5.5.2 明确禁止煽动人群行为的表述。",
+      "suggestion": "如实标注库存数量",
+      "ruleSource": "《微信视频号运营规范》5.5.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "断码",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu"
+      ],
+      "reason": "本身为正常商品描述，但若虚构库存紧迫则构成误导性促销。",
+      "suggestion": "如实标注实际库存",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "早鸟价",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "正常促销描述，若虚构原价则构成价格违法。",
+      "suggestion": "如实标注原价与早鸟价差异依据",
+      "ruleSource": "价格法 / 《广告法》",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "星座",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "profile",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "⚠️【仅限账号名称场景】《微信视频号运营规范》3.6.7 禁止在账号名称中使用日常通用词汇，「星座」在列。本条不针对正文内容——正文中出现该词本身不构成违规。",
+      "suggestion": "若用于账号名：改用具体可识别的名称（如机构全称/业务名）。若用于正文：本条不适用，无需修改。",
+      "ruleSource": "《微信视频号运营规范》3.6.7",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "最后一波",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "虚假紧迫感，视频号运营规范 5.5.3 禁止误导性描述使用户产生错误理解。",
+      "suggestion": "改为如实说明批次数量",
+      "ruleSource": "《微信视频号运营规范》5.5.3",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "最后机会",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "虚假紧迫感，视频号运营规范 5.5.2 禁止以浮夸描述煽动人群。",
+      "suggestion": "改为客观说明活动时间",
+      "ruleSource": "《微信视频号运营规范》5.5.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "正能量",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "profile",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "⚠️【仅限账号名称场景】《微信视频号运营规范》3.6.7 禁止在账号名称中使用日常通用词汇，「正能量」在列。本条不针对正文内容——正文中出现该词本身不构成违规。",
+      "suggestion": "若用于账号名：改用具体可识别的名称（如机构全称/业务名）。若用于正文：本条不适用，无需修改。",
+      "ruleSource": "《微信视频号运营规范》3.6.7",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "清仓价",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "正常促销描述，若虚构原价则构成价格违法。",
+      "suggestion": "如实标注原价依据",
+      "ruleSource": "价格法 / 《广告法》",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "火爆热销",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "如无真实销量数据则构成虚假宣传，视频号运营规范 5.5.4 禁止以浮夸描述煽动人群。",
+      "suggestion": "标注真实销量数据与统计时间",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "炸裂",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu",
+        "shipinhao"
+      ],
+      "reason": "夸张标题党表述，视频号运营规范 5.2.1 明确将使用夸张标题且内容与标题严重不符列为违规。",
+      "suggestion": "改为与内容相符的客观描述",
+      "ruleSource": "《微信视频号运营规范》5.2.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "白送",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "正常促销描述，若实际需付费则构成误导。",
+      "suggestion": "如实说明是否需完成任务",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "百科",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "profile",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "⚠️【仅限账号名称场景】《微信视频号运营规范》3.6.7 禁止在账号名称中使用日常通用词汇，「百科」在列。本条不针对正文内容——正文中出现该词本身不构成违规。",
+      "suggestion": "若用于账号名：改用具体可识别的名称（如机构全称/业务名）。若用于正文：本条不适用，无需修改。",
+      "ruleSource": "《微信视频号运营规范》3.6.7",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "福利",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "正常表达。但如实际无福利则构成虚假宣传。",
+      "suggestion": "如实提供所述福利",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "秒杀",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "正常促销描述，若虚构原价或限时则构成价格违法。",
+      "suggestion": "如实标注活动时间与价格",
+      "ruleSource": "价格法 / 《广告法》",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "脚本",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "该词本身中性。但视频号运营规范 4.5.2 明确禁止制作发布与刷量刷粉行为相关的方法与工具内容。",
+      "suggestion": "如为自动化脚本需说明合规用途",
+      "ruleSource": "《微信视频号运营规范》4.5.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "虚假宣传",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "该词本身为违规描述，通常出现在投诉类内容中，本身不违规。",
+      "suggestion": "如描述具体事件需有依据，避免诽谤",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "赶紧抢",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "虚假紧迫感，视频号运营规范 5.5.2 禁止以浮夸描述煽动人群抢购。",
+      "suggestion": "改为如实说明库存或截止时间",
+      "ruleSource": "《微信视频号运营规范》5.5.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "起飞",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu",
+        "shipinhao"
+      ],
+      "reason": "夸张表述，视频号运营规范 5.5.4 禁止编造夸张故事煽动情绪。",
+      "suggestion": "改为具体数据描述",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "踩雷",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "正常口语表达，本身不违规。",
+      "suggestion": "无需替换，但涉及具体品牌时需有依据，避免损害商誉",
+      "ruleSource": "《小红书社区公约》社区规范",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "踩雷预警",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "正常表达，本身不违规。涉及具体品牌需有事实依据。",
+      "suggestion": "陈述个人体验，避免无据指控",
+      "ruleSource": "《小红书社区公约》5.2",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "躺平",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu",
+        "shipinhao"
+      ],
+      "reason": "正常口语表达，本身不违规。",
+      "suggestion": "无需替换",
+      "ruleSource": "《微信视频号运营规范》5.5",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "轻松上手",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "正常表达，本身不违规。",
+      "suggestion": "如实说明学习成本",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "逆袭",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "正常表达。视频号运营规范 5.5.4 禁止编造夸张故事，如虚构经历则违规。",
+      "suggestion": "如实讲述真实经历",
+      "ruleSource": "《微信视频号运营规范》5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "速看",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "标题党诱导点击，视频号运营规范 5.5.1 禁止标题含惊悚极端内容引人不适。",
+      "suggestion": "改为具体内容说明",
+      "ruleSource": "《微信视频号运营规范》5.5.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "避雷",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "正常口语表达，本身不违规。涉及具体品牌时需有依据。",
+      "suggestion": "陈述个人体验，避免无据指控",
+      "ruleSource": "《小红书社区公约》5.2",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "错过后悔",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "虚假紧迫感，视频号运营规范 5.5.2 禁止煽动人群行为。",
+      "suggestion": "改为客观说明活动期限",
+      "ruleSource": "《微信视频号运营规范》5.5.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "错过等明年",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "虚假紧迫感，视频号运营规范 5.5.2 禁止以浮夸描述煽动人群。",
+      "suggestion": "改为客观说明活动时间",
+      "ruleSource": "《微信视频号运营规范》5.5.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "限时秒杀",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "若时限为虚构则构成误导，视频号运营规范 5.5.3 禁止误导性描述。",
+      "suggestion": "标注真实截止时间",
+      "ruleSource": "《微信视频号运营规范》5.5.3",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "限量发售",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "若虚构限量则构成误导性促销。",
+      "suggestion": "如实标注实际数量",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "限量抢购",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "若虚构限量则构成误导性促销。",
+      "suggestion": "如实标注实际数量",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "零基础也能学",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "正常教育类表达，本身不违规。如实际门槛很高则可能构成误导。",
+      "suggestion": "如实说明前置要求",
+      "ruleSource": "《广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "公布日"
+    },
+    {
+      "term": "代写",
+      "category": "侵权风险",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao"
+      ],
+      "reason": "代写学术论文属学术不端，视频号运营规范 5.11 禁止欺诈不诚信内容；《抖音社区自律公约》禁止违反法律法规扰乱秩序的内容。",
+      "suggestion": "删除该表述，本项目明确不接此类需求",
+      "ruleSource": "《微信视频号运营规范》4.11 / 《抖音社区自律公约》五",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "仿冒",
+      "category": "侵权风险",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 3.4 明确禁止仿冒公众人物或造成用户误会，4.1.2 禁止擅自使用他人企业名称或商标。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》3.4 / 4.1.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "伪造探店",
+      "category": "侵权风险",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书治理规则明确打击 AI 伪造探店体验类内容，属于欺骗性引流。",
+      "suggestion": "仅发布真实到店体验",
+      "ruleSource": "小红书社区规范（内容创作新规）",
+      "ruleDate": "2026-10-05",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "假冒",
+      "category": "侵权风险",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao"
+      ],
+      "reason": "《抖音社区自律公约》禁止推广假冒伪劣物品；视频号运营规范 4.9.1 禁止仿冒他人使用虚假信息注册。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《抖音社区自律公约》五 / 《微信视频号运营规范》4.9.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "偷拍",
+      "category": "侵权风险",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书品牌号社区运营规范明确将走光、偷拍、漏点等泄露他人隐私内容列为侵权内容。",
+      "suggestion": "删除相关影像内容",
+      "ruleSource": "小红书品牌号社区运营规范（侵权内容）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://dc.xhscdn.com/file/c947aa537be9e80d802226374b5c710f/%E5%93%81%E7%89%8C%E5%8F%B7%E7%A4%BE%E5%8C%BA%E8%BF%90%E8%90%A5%E8%A7%84%E8%8C%83.pdf",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "商业秘密",
+      "category": "侵权风险",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "视频号运营规范 5.3.4 明确禁止未经授权发布企业商业秘密；小红书社区规范 5.2.4 禁止未经授权披露商业机密。",
+      "suggestion": "删除泄露他人商业机密的内容",
+      "ruleSource": "《微信视频号运营规范》5.3.4 / 《小红书社区规范》5.2.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "家庭住址",
+      "category": "侵权风险",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "视频号运营规范 5.3.2 与小红书社区规范 5.1.3 均明确禁止发布他人家庭住址等个人隐私资料。",
+      "suggestion": "删除个人隐私信息",
+      "ruleSource": "《微信视频号运营规范》5.3.2 / 《小红书社区规范》5.1.3",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "搬运",
+      "category": "侵权风险",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "侵犯著作权，视频号运营规范 5.3.1 与小红书社区规范 5.2.1 均明确禁止。",
+      "suggestion": "使用原创或已获授权内容",
+      "ruleSource": "《微信视频号运营规范》5.3.1 / 《小红书社区规范》5.2.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "洗稿",
+      "category": "侵权风险",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "小红书社区规范 5.2.1 禁止未经授权发布侵犯他人著作权的内容；平台原创识别模型已升级，同质化内容直接降权。",
+      "suggestion": "使用原创内容或已授权素材，并使用平台转载声明功能",
+      "ruleSource": "《小红书社区规范》5.2（知识产权） / 《微信视频号运营规范》5.3.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "盗版",
+      "category": "侵权风险",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "《抖音社区自律公约》禁止制作买卖推广假冒伪劣物品及相关内容。",
+      "suggestion": "删除该表述，使用正版",
+      "ruleSource": "《抖音社区自律公约》五（违规或违法交易）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）"
+      },
+      "platformVerified": {
+        "douyin": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "盗版资源",
+      "category": "侵权风险",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "shipinhao"
+      ],
+      "reason": "《抖音社区自律公约》禁止推广假冒伪劣物品；视频号运营规范 5.3.1 禁止侵犯著作权。",
+      "suggestion": "删除该表述，使用正版",
+      "ruleSource": "《抖音社区自律公约》五 / 《微信视频号运营规范》5.3.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "破解版",
+      "category": "侵权风险",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "《抖音社区自律公约》禁止制作买卖推广假冒伪劣物品及相关内容。",
+      "suggestion": "删除该表述，使用正版",
+      "ruleSource": "《抖音社区自律公约》五（违规或违法交易）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）"
+      },
+      "platformVerified": {
+        "douyin": "verified"
+      },
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "网盘资源",
+      "category": "侵权风险",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "微信小店官方规则禁止单独售卖虚拟文档（含百度网盘文档等）；若涉及侵权内容另涉著作权 violations。",
+      "suggestion": "删除该表述；如为自有内容需以合规形式交付",
+      "ruleSource": "微信小店官方规则禁止项（虚拟文档）",
+      "ruleDate": "2026-08-11",
+      "ruleUrl": "https://store.weixin.qq.com/chengzhang/webdoc/wiki/9730/7ab3758b7be0bf55/growth_center_rule_for_store?source=4",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "虚假原创",
+      "category": "侵权风险",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书治理规则明确打击伪原创搬运，直接截图或下载他人素材二次发布会被严格判定为伪原创搬运；引用他人素材须使用平台的转载声明功能。",
+      "suggestion": "使用原创内容，引用他人素材须使用平台转载声明功能",
+      "ruleSource": "小红书社区规范（原创保护）",
+      "ruleDate": "2026-10-05",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "虚假测评",
+      "category": "侵权风险",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书治理规则明确打击 AI 伪造探店体验、AI 虚构测评感受类内容。",
+      "suggestion": "如有真实体验需如实说明，未体验不得写成测评",
+      "ruleSource": "小红书社区规范（内容创作新规）",
+      "ruleDate": "2026-10-05",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "身份证号",
+      "category": "侵权风险",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "视频号运营规范 5.3.2 明确禁止未经授权发布他人身份证号码、联系方式、家庭住址、微信号、照片等个人隐私资料；小红书社区规范 5.1.3 同样禁止。",
+      "suggestion": "删除个人隐私信息",
+      "ruleSource": "《微信视频号运营规范》5.3.2 / 《小红书社区规范》5.1.3",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "专利",
+      "category": "侵权风险",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "视频号运营规范 5.3.1 明确禁止侵犯他人专利权；小红书社区规范 5.2.3 禁止侵犯他人专利权权益。",
+      "suggestion": "如涉及他人专利需取得授权",
+      "ruleSource": "《微信视频号运营规范》5.3.1 / 《小红书社区规范》5.2.3",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "代做",
+      "category": "侵权风险",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "如涉及学术不端或虚假承诺则违规，视频号运营规范 4.11 禁止欺诈不诚信内容。",
+      "suggestion": "改为提供工具与方法，不代做",
+      "ruleSource": "《微信视频号运营规范》4.11",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "免费分享课程",
+      "category": "侵权风险",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "如涉及他人版权课程则构成侵权，视频号运营规范 5.3.1 明确禁止侵犯著作权。",
+      "suggestion": "仅分享自有版权内容",
+      "ruleSource": "《微信视频号运营规范》5.3.1 / 《小红书社区规范》5.2.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "内部分享",
+      "category": "侵权风险",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "若涉及他人版权内容则构成侵权，视频号运营规范 5.3.4 禁止未经授权披露商业机密。",
+      "suggestion": "确认拥有版权或已获授权",
+      "ruleSource": "《微信视频号运营规范》5.3.1 / 5.3.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "商标",
+      "category": "侵权风险",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "视频号运营规范 5.3.1 明确禁止侵犯他人商标权；小红书社区规范 5.2.2 禁止侵犯他人已注册商标。",
+      "suggestion": "如为他人商标需取得授权或改为描述性使用",
+      "ruleSource": "《微信视频号运营规范》5.3.1 / 《小红书社区规范》5.2.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "在线题库",
+      "category": "侵权风险",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "微信小店教育培训类目规则禁止单独售卖虚拟文档含在线题库。",
+      "suggestion": "改为平台内合规交付形式",
+      "ruleSource": "微信小店教育培训类目规则禁止项",
+      "ruleDate": "2026-08-11",
+      "ruleUrl": "https://store.weixin.qq.com/chengzhang/webdoc/wiki/7893/dde8a72d6df16d25/growth_center_rule_for_store?source=3",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "枪手",
+      "category": "侵权风险",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "指代代写代考等学术不端行为，视频号运营规范 4.11 禁止欺诈不诚信内容。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》4.11",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "枪替",
+      "category": "侵权风险",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "学术不端相关，视频号运营规范 4.11 禁止欺诈不诚信内容。",
+      "suggestion": "删除该表述",
+      "ruleSource": "《微信视频号运营规范》4.11",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "电子书",
+      "category": "侵权风险",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "微信小店教育培训类目规则禁止单独售卖虚拟文档含电子书。",
+      "suggestion": "改为平台内合规交付形式",
+      "ruleSource": "微信小店教育培训类目规则禁止项",
+      "ruleDate": "2026-08-11",
+      "ruleUrl": "https://store.weixin.qq.com/chengzhang/webdoc/wiki/7893/dde8a72d6df16d25/growth_center_rule_for_store?source=3",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "百度网盘",
+      "category": "侵权风险",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "微信小店教育培训类目规则明确禁止单独售卖虚拟文档（电子书、在线题库、课件、百度网盘文档等）。",
+      "suggestion": "改为平台内合规交付形式",
+      "ruleSource": "微信小店教育培训类目规则禁止项",
+      "ruleDate": "2026-08-11",
+      "ruleUrl": "https://store.weixin.qq.com/chengzhang/webdoc/wiki/7893/dde8a72d6df16d25/growth_center_rule_for_store?source=3",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "编造",
+      "category": "侵权风险",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 5.4 明确将编造事实公然丑化他人人格列为不实信息，5.5.4 禁止编造夸张猎奇故事。",
+      "suggestion": "如实标注信息来源，引用他人内容需注明来源与拍摄时间地点",
+      "ruleSource": "《微信视频号运营规范》5.4 / 5.5.4",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "著作权",
+      "category": "侵权风险",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao",
+        "xiaohongshu"
+      ],
+      "reason": "视频号运营规范 5.3.1 明确禁止侵犯他人著作权；小红书社区规范 5.2.1 同样禁止。",
+      "suggestion": "使用原创或已获授权内容",
+      "ruleSource": "《微信视频号运营规范》5.3.1 / 《小红书社区规范》5.2.1",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "partial",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "shipinhao": "verified",
+        "xiaohongshu": "partial"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "课件",
+      "category": "侵权风险",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "微信小店教育培训类目规则禁止单独售卖虚拟文档含课件。",
+      "suggestion": "改为平台内合规交付形式",
+      "ruleSource": "微信小店教育培训类目规则禁止项",
+      "ruleDate": "2026-08-11",
+      "ruleUrl": "https://store.weixin.qq.com/chengzhang/webdoc/wiki/7893/dde8a72d6df16d25/growth_center_rule_for_store?source=3",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "蹭热度",
+      "category": "侵权风险",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 5.5.3 禁止误导性内容使用户对时效性话题产生错误理解或不当关联。",
+      "suggestion": "如实标注信息来源与关联依据",
+      "ruleSource": "《微信视频号运营规范》5.5.3",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "http://short.weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "shipinhao": "《微信视频号运营规范》4.8.3"
+      },
+      "platformVerified": {
+        "shipinhao": "verified"
+      },
+      "sourceNote": "【视频号】《微信视频号运营规范》4.8.3（已核实）；其余平台因无对应官方依据，已从适用范围移除。"
+    },
+    {
+      "term": "主页有微",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "抖音电商明确将「主页有微」等暗示性暗语列入导流违规判定范围，属引导站外加联系方式的表达。",
+      "suggestion": "改为引导关注本账号主页查看完整内容",
+      "ruleSource": "抖音电商创作者违规管理规则（导流违规判定口径）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://school.jinritemai.com/doudian/web/",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "sentenceRules": [
+        {
+          "from": "主页有微",
+          "to": "",
+          "example": "主页有微 → （删除）"
+        }
+      ]
+    },
+    {
+      "term": "扣1领资料",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "抖音电商将「扣1领资料」类话术列为导流违规判定范围，评论区数字暗号常用于站外承接。",
+      "suggestion": "改为「主页置顶查看资料」等站内承接方式",
+      "ruleSource": "抖音电商创作者违规管理规则（导流违规判定口径）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://school.jinritemai.com/doudian/web/",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "私信下单",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "抖音电商将引导私信下单判定为「诱导第三方」违规——即便不导去站外、仅引导站内私信沟通也命中。",
+      "suggestion": "改为引导点击购物车/商品链接在站内成交",
+      "ruleSource": "抖音电商创作者违规管理规则（诱导第三方）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://school.jinritemai.com/doudian/web/",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（诱导第三方）（该章节号未核实，请以官方最新公示为准）"
+      },
+      "platformVerified": {
+        "douyin": "verified"
+      }
+    },
+    {
+      "term": "橱窗链接",
+      "category": "导流违规",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "抖音「橱窗」为站外带货链路，抖音电商要求引导须使用官方组件；口播/文案直接索取橱窗链接属违规引导。",
+      "suggestion": "改为引导点击平台官方商品挂载组件（如下方商品链接），不使用口播或文案索取链接。",
+      "ruleSource": "抖音电商创作者违规管理规则（违规营销）",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://school.jinritemai.com/doudian/web/",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "小黄车",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "「小黄车」为抖音电商官方挂载组件名，本身不违规；但在非抖音平台出现该表述即属跨平台导流信号。",
+      "suggestion": "在本平台改用「购物车」「商品链接」等对应组件名",
+      "ruleSource": "抖音电商官方组件说明 /《交易导流违规管理细则》",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://school.jinritemai.com/doudian/web/",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "福袋",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "「福袋」为视频号直播间的官方福利玩法；抖音与小红书无此玩法，在这两个平台出现属跨平台导流信号。",
+      "suggestion": "在本平台改用「直播间抽奖」「互动玩法」等对应玩法的官方名称。",
+      "ruleSource": "《微信视频号直播违规引流认定细则》",
+      "ruleDate": "2025-03-14",
+      "ruleUrl": "https://support.weixin.qq.com/cgi-bin/mmsupportacctnodeweb-bin/pages/y9NA8fMqCXTCuIUd",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日"
+    },
+    {
+      "term": "私信超5人",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书对普通账号主动私信频次设上限（24 小时内对同一陌生用户最多 1 条），批量私信导流会被账号风控拦截。",
+      "suggestion": "改为在笔记内留下信息，引导用户主动站内私信",
+      "ruleSource": "《小红书社区规范》私信频次管控口径",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/crown/community/rules",
+      "sourceVerified": "verified",
+      "sourceNote": "该链接为《小红书社区规范》2021-12-17 版页面；本条依据的细分口径为后续公告/细则，页面内可能无对应章节。点击核对时请以官方最新公告为准。",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日"
+    },
+    {
+      "term": "暗号避审核",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书明确点名「暗号避审核」类教程无效，并对其传播的谐音、符号拆分联系方式做语义与行为轨迹双重检测。",
+      "suggestion": "删除该表述，改为规范的站内科理性引导",
+      "ruleSource": "《小红书社区规范》3.2 / 社区公约导流治理口径",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/crown/community/rules",
+      "sourceVerified": "verified",
+      "sourceNote": "该链接为《小红书社区规范》2021-12-17 版页面；本条依据的细分口径为后续公告/细则，页面内可能无对应章节。点击核对时请以官方最新公告为准。",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日"
+    },
+    {
+      "term": "网盘密码",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书要求自动发货链接由合规平台生成，直接发送网盘密码作为发货链接不被平台认可，属违规交付方式。",
+      "suggestion": "改为使用平台官方商品与发货能力完成交付",
+      "ruleSource": "《小红书电子资源类目管理要求》",
+      "ruleDate": "2026-09-18",
+      "ruleUrl": "https://www.xiaohongshu.com/crown/community/rules",
+      "sourceVerified": "verified",
+      "sourceNote": "该链接为《小红书社区规范》2021-12-17 版页面；本条依据的细分口径为后续公告/细则，页面内可能无对应章节。点击核对时请以官方最新公告为准。",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日"
+    },
+    {
+      "term": "AI虚拟人",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu"
+      ],
+      "reason": "抖音与小红书要求 AI 虚拟人账号在资料页如实说明并开启「AI 虚拟人」标签；未开启即违规。",
+      "suggestion": "在资料页如实说明并开启「AI 虚拟人」标签",
+      "ruleSource": "小红书 AI 治理规则（2026-08 升级）/《人工智能生成合成内容标识办法》",
+      "ruleDate": "2026-08-01",
+      "ruleUrl": "https://www.xiaohongshu.com/content_dispute",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日"
+    },
+    {
+      "term": "医疗引流",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 5.20 明确禁止未经许可利用视频、评论、个人签名引流到个人联系方式，属不规范医疗科普（医疗引流）。",
+      "suggestion": "删除引流表述，改为引导正规医疗机构线下就诊",
+      "ruleSource": "《微信视频号运营规范》5.20.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video&head=true",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "荐股荐基",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "微信生态内荐股荐基与无证金融产品推介是变现最贵的红线，视频号要求发布方具备金融类资格。",
+      "suggestion": "取得金融类资质并经平台认证后再发布，或改为财经知识科普",
+      "ruleSource": "《微信视频号运营规范》10.2",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video&head=true",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "医疗科普引流",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 5.19 明确将利用患者故事/病例分享诱导互动、以震惊体医疗内容博取关注列为不规范医疗科普（医疗营销）。",
+      "suggestion": "改为去标识化的规范科普内容，不做互动诱导",
+      "ruleSource": "《微信视频号运营规范》5.19",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video&head=true",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "全程AI生成",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "抖音自 2026-06-15 起做多模态语义判定，画面、声音、文字三模态对不上即判违规；全程 AI 生成且零人工修改的内容不进合规 AI 流量池。",
+      "suggestion": "加入人工修改痕迹与实拍片段，并按规定完成 AI 标识",
+      "ruleSource": "《抖音社区自律公约》（AI 内容治理口径）",
+      "ruleDate": "2026-06-15",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日"
+    },
+    {
+      "term": "同质化内容",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "抖音平台识别已从画面层进化到语义层，多账号结构雷同、只换文案与 BGM 的内容会被判定同质化并限流。",
+      "suggestion": "增加原创表达与实拍素材，避免批量同质发布",
+      "ruleSource": "《抖音社区自律公约》鼓励原创、优质的内容",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "搬运切片",
+      "category": "侵权风险",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin"
+      ],
+      "reason": "抖音自 2026-08 起升级同质化识别，纯搬运切片号被精准限流；影视切片还叠加著作权风险。",
+      "suggestion": "使用自有版权素材或取得授权后二次创作",
+      "ruleSource": "《抖音社区自律公约》原创导向 / 版权保护规则",
+      "ruleDate": "2026-08-01",
+      "ruleUrl": "https://www.douyin.com/rule/policy?activeId=self_decipline",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "生效日"
+    },
+    {
+      "term": "家长群",
+      "category": "限流词",
+      "riskLevel": "medium",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号运营规范 3.6.7 将「家长」等日常通用词汇列入账号名称禁用范围，「家长群」类账号名易被判定为通用词。",
+      "suggestion": "账号名称需使用具体可识别名称",
+      "ruleSource": "《微信视频号运营规范》3.6.7",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video&head=true",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "未报备推广",
+      "category": "限流词",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "xiaohongshu"
+      ],
+      "reason": "小红书商业推广笔记须按平台规范报备，未报备的商业推广内容会被限流处理。",
+      "suggestion": "通过蒲公英或专业号报备后发布",
+      "ruleSource": "《推广笔记社区规范》",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/crown/community/rules",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "ruleNote": "该链接为小红书社区规则总页，本条依据的细分口径为后续公告，页面内可能无对应章节。请以条款号自行检索官方最新版本核对。",
+      "sourceNote": "本条依据待补全，链接为占位，请以官方最新公告为准。"
+    },
+    {
+      "term": "视频号原创保护",
+      "category": "限流词",
+      "riskLevel": "low",
+      "appliesTo": "content",
+      "platforms": [
+        "shipinhao"
+      ],
+      "reason": "视频号设有原创声明与保护机制，非原创搬运内容会被降低推荐权重。",
+      "suggestion": "开启原创声明，或使用已获授权的素材并保留署名",
+      "ruleSource": "《微信视频号运营规范》原创保护机制",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video&head=true",
+      "sourceVerified": "verified",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期"
+    },
+    {
+      "term": "详情私我",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu"
+      ],
+      "reason": "「详情私我」是引导用户转向私信/站外承接的典型话术，抖音电商将引导私信判为诱导第三方违规，小红书将引导私域交易列入导流违规。",
+      "suggestion": "改为在正文/评论区完整说明信息，引导站内关注与下单",
+      "ruleSource": "《小红书社区规范》3.2 / 抖音电商创作者违规管理规则",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/crown/community/rules",
+      "sourceVerified": "partial",
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "xiaohongshu": "partial"
+      }
+    },
+    {
+      "term": "详情私信",
+      "category": "导流违规",
+      "riskLevel": "high",
+      "appliesTo": "content",
+      "platforms": [
+        "douyin",
+        "xiaohongshu"
+      ],
+      "reason": "「详情私信」以私信作为站外承接动作，抖音电商认定为诱导第三方违规，小红书认定为引导站外交易。",
+      "suggestion": "改为把关键信息写在正文内，并引导站内关注",
+      "ruleSource": "《小红书社区规范》3.2.2 / 抖音电商创作者违规管理规则",
+      "ruleDate": "2026-10-21",
+      "ruleUrl": "https://www.xiaohongshu.com/crown/community/rules",
+      "sourceVerified": "partial",
+      "sourceNote": "【抖音】抖音电商创作者违规管理规则（导流违规判定口径）（已核实）；【小红书】《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）（该链接为较早版本，细分口径以官方最新公告为准）；其余平台因无对应官方依据，已从适用范围移除。",
+      "verifiedAt": "2026-10-21",
+      "ruleDateKind": "整理日期",
+      "platformSource": {
+        "douyin": "抖音电商创作者违规管理规则（导流违规判定口径）（该章节号未核实，请以官方最新公示为准）",
+        "xiaohongshu": "《小红书社区规范》导流治理口径（该链接为 2021-12-17 版页面，细分口径为后续公告/细则）"
+      },
+      "platformVerified": {
+        "douyin": "verified",
+        "xiaohongshu": "partial"
+      }
+    }
+  ],
+  "verifiedAt": "2026-10-21",
+  "linkAudit": "2026-10-21 全量实测：14 个唯一 URL 全部 HTTP 200 且标题正确；严格错配 0 条；1 条留空（附 ruleNote）",
+  "patternRules": [
+    {
+      "id": "most_adj",
+      "label": "最 + 性质词",
+      "pattern": "最",
+      "exclude": [
+        "后",
+        "近",
+        "新",
+        "晚",
+        "终",
+        "初",
+        "多",
+        "少",
+        "爱",
+        "怕",
+        "想",
+        "要",
+        "能",
+        "会",
+        "该",
+        "应",
+        "糟",
+        "自然",
+        "需"
+      ],
+      "note": "排除词是**从模式字「最」开始**的完整词条（如「最后」「最需要注意」）。匹配逻辑：从模式字起点收集连续实义字符，与排除词做前缀比对——所以排除词必须含「最」字首。「好」「极」「爽」「棒」「值」「美」「快」「省」等形容词性字刻意不在列表内——「最好」「最有效」「最专业」正是《广告法》第九条的核心禁止组合。",
+      "riskLevel": "medium",
+      "category": "绝对化用语",
+      "reason": "《广告法》第九条禁止使用「最高级」等绝对化用语。「最」+ 性质词的组合（最便宜/最有效/最划算等）属此类，但具体是否违规需结合完整语境与平台执法口径判断。",
+      "ruleSource": "《中华人民共和国广告法》第九条",
+      "ruleDate": "2015-04-24",
+      "ruleDateKind": "公布日",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "suggestion": "改为具体可验证的表述，如「近期价格较低」「实测表现稳定」，并附上依据（榜单、参数、检测报告等）。",
+      "sourceVerified": "verified",
+      "spanLength": 2,
+      "matchHint": "「最」+ 后接字（疑似表述，非穷举词条）",
+      "dedupeHint": "若枚举层已命中同一位置，则以枚举层结果为准，不重复展示模式层命中",
+      "excludeWords": [
+        "最后",
+        "最近",
+        "最新",
+        "最终",
+        "最多",
+        "最少",
+        "最早",
+        "最高",
+        "最晚",
+        "最爱",
+        "最想",
+        "最怕",
+        "最初",
+        "最大",
+        "最小",
+        "最需要注意",
+        "最需要关注",
+        "最需要重视"
+      ],
+      "excludeNote": "只用 excludeWords（完整词）排除，不用单字。\n原因1：单字排除会误伤「最好/最佳/最强」等《广告法》第九条明文列举的违规用语。\n原因2：单字无法区分「最好」（违规）与「最自…」（可能正常）。\n\n【有意不排除「最需要」】虽然「最需要注意的是」是正常表达，但：\n  · 模式层只是 medium「疑似提示」，不是 high 判定\n  · 误报成本（多一条提示）远低于漏报成本（真违规没被提示）\n  · 准确度是一票否决项，产品原则是「宁可多提示，不可漏检」\n  → 保留「最需要」会产生一条 medium 提示，这是可接受的有意取舍。\n  → 若将来有人想加它，请先读这段理由。\n\n已排除的三个长词（最需要注意/最需要关注/最需要重视）是具体表述，语义上更接近正常表达，故排除。\n\n【注意：排除采用前缀匹配】因排除是从模式字「最」起做前缀比对，\n  「最需要注意/关注/重视」三个长词会连带覆盖「最需要…」的常见句式。\n  例：「最需要注意的是保存方式」当前 0 命中（被「最需要注意」覆盖）。\n  其余「最需要X」（如「最需要马上处理」「最需要做的事」）仍会产生一条 medium 提示。\n  详见 content-calendar.md §20 的实测表。"
+    },
+    {
+      "id": "guarantee_adj",
+      "label": "保证 + 性质词",
+      "pattern": "保证",
+      "exclude": [
+        "不"
+      ],
+      "note": "「保证不…」为正常否定表达，不计入命中",
+      "riskLevel": "medium",
+      "category": "虚假承诺",
+      "reason": "《广告法》第二十八条禁止对效果作保证性承诺。「保证+性质词」（保证有效/保证满意/保证能用等）属此类，但具体是否违规需结合完整语境与平台执法口径判断。",
+      "ruleSource": "《中华人民共和国广告法》第二十八条",
+      "ruleDate": "2015-04-24",
+      "ruleDateKind": "公布日",
+      "ruleUrl": "http://www.npc.gov.cn/zgrdw//npc////cwhhy/12jcwh/2015-04/25/content_1934594.htm",
+      "suggestion": "改为说明具体条款，如「符合XX标准」「质保X年」，并写明不适用于哪些情况。",
+      "sourceVerified": "verified",
+      "spanLength": 2,
+      "matchHint": "「保证」+ 后接字（疑似表述，非穷举词条）",
+      "dedupeHint": "若枚举层已命中同一位置，则以枚举层结果为准，不重复展示模式层命中",
+      "excludeWords": [],
+      "excludeNote": "「保证不…」为正常否定表达"
+    }
+  ],
+  "metricsFingerprint": "195853b8c0728164",
+  "metricsSnapshot": {
+    "total": 374,
+    "unique": 374,
+    "cats": {
+      "绝对化用语": 38,
+      "虚假承诺": 78,
+      "医疗功效": 41,
+      "导流违规": 31,
+      "限流词": 155,
+      "侵权风险": 31
+    },
+    "risks": {
+      "high": 193,
+      "medium": 119,
+      "low": 62
+    },
+    "scope": {
+      "content": 369,
+      "profile": 5
+    },
+    "sv": {
+      "verified": 274,
+      "partial": 100
+    },
+    "pfc": {
+      "douyin+shipinhao+xiaohongshu": 103,
+      "shipinhao": 113,
+      "xiaohongshu": 67,
+      "douyin+xiaohongshu": 18,
+      "shipinhao+xiaohongshu": 23,
+      "douyin+shipinhao": 22,
+      "douyin": 28
+    },
+    "patternRules": 2
+  },
+  "fingerprintScope": {
+    "covered": [
+      "term",
+      "riskLevel",
+      "platforms",
+      "ruleSource"
+    ],
+    "notCovered": [
+      "category",
+      "appliesTo",
+      "reason",
+      "suggestion",
+      "ruleDate",
+      "ruleDateKind",
+      "verifiedAt",
+      "sourceNote",
+      "sourceVerified",
+      "sourceVerified",
+      "excludeWords",
+      "exclude",
+      "excludeNote",
+      "scene"
+    ],
+    "rationale": "指纹的职责是「词条内容语义是否变了」，不覆盖全部字段是刻意取舍——若纳入 suggestion/reason 等说明性字段，每改一次文案 PRD 都要重同步，产生噪音。代价是：未覆盖字段变化时，[10] 项不会告警。故将覆盖范围显式记录为数据，供脚本校验。",
+    "warning": "⚠️ 未覆盖字段发生变化时，语义指纹不变、PRD 6.5 不需重同步。但界面呈现可能已变——请用专项检查项覆盖：suggestion 自洽性见 [12]、模式层见 [9]、coverage 一致性见 [7]。"
+  }
+};

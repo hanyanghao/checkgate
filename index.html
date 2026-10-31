@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="CheckGate —— 抖音/视频号/小红书发布前合规自检。粘贴文案，检出规则库里明确禁止的表述，告诉你命中第几个字的哪个词、依据哪条规则、改成什么。文案只在你的浏览器里处理。">
+<!-- 社交分享展开卡（微信/小红书/QQ 转发时生效）。og:description 与上方 description 保持一致，不引入新表述。 -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CheckGate">
+<meta property="og:title" content="CheckGate · 三平台发布前合规自检（374 条规则免费查）">
+<meta property="og:description" content="CheckGate —— 抖音/视频号/小红书发布前合规自检。粘贴文案，检出规则库里明确禁止的表述，告诉你命中第几个字的哪个词、依据哪条规则、改成什么。文案只在你的浏览器里处理。">
+<meta property="og:url" content="https://checkgate.app.workbuddy.host/?sharecode=EK2MBAGVWH">
+<meta property="og:image" content="https://checkgate.app.workbuddy.host/cover-d1.png?sharecode=EK2MBAGVWH">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="1440">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CheckGate · 三平台发布前合规自检（374 条规则免费查）">
+<meta name="twitter:description" content="CheckGate —— 抖音/视频号/小红书发布前合规自检。粘贴文案，检出规则库里明确禁止的表述，告诉你命中第几个字的哪个词、依据哪条规则、改成什么。文案只在你的浏览器里处理。">
+<meta name="twitter:image" content="https://checkgate.app.workbuddy.host/cover-d1.png?sharecode=EK2MBAGVWH">
+<link rel="canonical" href="https://checkgate.app.workbuddy.host/?sharecode=EK2MBAGVWH">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "CheckGate",
+  "url": "https://checkgate.app.workbuddy.host/?sharecode=EK2MBAGVWH",
+  "description": "抖音/视频号/小红书发布前合规自检：粘贴文案，检出规则库里明确禁止的表述，定位命中第几个字的哪个词、依据哪条规则、改成什么。全部在浏览器本地处理，文案不上传。",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" },
+  "featureList": [
+    "抖音/视频号/小红书三平台规则库检索（374 条，2026-10-21 版）",
+    "命中位置定位：第几个字的哪个词",
+    "规则依据：法规条款号与平台规范章节号，可跳转官方来源核对",
+    "改写建议：正向改写方向",
+    "本地检测：文案不上传"
+  ]
+}
+</script>
+<meta name="theme-color" content="#FFFDF9">
+<title>CheckGate · 发布前合规自检</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23C8402F'/><path d='M9 16.5l4.5 4.5L23 11.5' stroke='%23fff' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+</head>
+<body>
+
+<!-- ===================== 顶栏 ===================== -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="26" height="26"><rect width="32" height="32" rx="6" fill="currentColor"/><path d="M9 16.5l4.5 4.5L23 11.5" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="brand-name">CheckGate</span>
+      <span class="brand-sep">|</span>
+      <span class="brand-sub">发布前合规自检</span>
+    </div>
+
+    <nav class="nav" id="nav" aria-label="主导航">
+      <button type="button" class="nav-item is-current" data-route="workbench">工作台</button>
+      <button type="button" class="nav-item" data-route="rules">规则库</button>
+      <button type="button" class="nav-item" data-route="cases">案例库</button>
+      <button type="button" class="nav-item" data-route="pricing">会员</button>
+      <button type="button" class="nav-item" data-route="changes">变更记录</button>
+    </nav>
+
+    <div class="topbar-right">
+      <!-- 版本徽标：规则库版本与更新日期，点击展开看明细 -->
+      <div class="vbadge" id="vbadge" role="button" tabindex="0" aria-expanded="false" aria-controls="vpanel"
+           title="点击查看规则库版本与更新日期">
+        <span class="vdot" aria-hidden="true"></span>
+        <span>规则库 <b id="vVersion">—</b></span>
+      </div>
+    </div>
+  </div>
+  <div class="vbadge-panel" id="vpanel" hidden></div>
+</header>
+
+<main class="wrap">
+
+<!-- ===================== 工作台 ===================== -->
+<section class="page is-current" id="page-workbench">
+  <div class="hero">
+    <h1 class="hero-title">发布前，把话说对。</h1>
+    <p class="hero-sub">粘贴你的口播稿或笔记，检出平台规则里明确禁止的表述，告诉你命中第几个字的哪个词、依据哪条规则、改成什么。</p>
+  </div>
+
+  <div class="stack">
+    <!-- 平台选择 + 输入 -->
+    <div class="card">
+      <div class="platform-tabs" role="tablist" id="platformTabs">
+        <button type="button" class="ptab is-active" role="tab" aria-selected="true" data-platform="douyin">抖音</button>
+        <button type="button" class="ptab" role="tab" aria-selected="false" data-platform="shipinhao">视频号</button>
+        <button type="button" class="ptab" role="tab" aria-selected="false" data-platform="xiaohongshu">小红书</button>
+        <button type="button" class="ptab" role="tab" aria-selected="false" data-platform="all">全平台<span class="ptab-tag">并集</span></button>
+      </div>
+
+      <div style="margin-top:var(--sp-4)">
+        <div class="editor-wrap">
+          <textarea id="input" class="editor" rows="8" spellcheck="false"
+            placeholder="把文案粘贴到这里…"
+            aria-label="文案输入框"></textarea>
+          <div class="editor-foot">
+            <span class="counter" id="counter">0 字</span>
+            <span style="flex:1"></span>
+            <button type="button" class="tool-btn" id="btnPaste">粘贴</button>
+            <button type="button" class="tool-btn" id="btnClear">清空</button>
+            <button type="button" class="tool-btn tool-btn--seal" id="btnSample">填入示例</button>
+          </div>
+        </div>
+
+        <div class="examples" id="examples">
+          <div class="examples-lead">还没有文案？先看看一个例子 →</div>
+          <div class="ex-grid" id="exGrid"></div>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn-primary" id="btnRun">开始自检</button>
+          <span class="kbd-hint">⌘ / Ctrl + Enter</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 检测中进度（位置固定在判定卡位，杜绝布局跳动） -->
+    <div class="card" id="progressCard" hidden>
+      <div class="progress">
+        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+        <div class="progress-text" id="progressText">正在比对规则库…</div>
+      </div>
+    </div>
+
+    <!-- 结果 -->
+    <div class="stack" id="results" hidden>
+      <!-- 判定卡 -->
+      <div class="verdict" id="verdict">
+        <div class="seal" id="seal" aria-hidden="true"></div>
+        <div class="verdict-main">
+          <h2 class="verdict-title" id="verdictTitle"></h2>
+          <p class="verdict-desc" id="verdictDesc"></p>
+          <button type="button" class="verdict-diff" id="verdictDiff" hidden></button>
+        </div>
+        <div class="verdict-meta" id="verdictMeta"></div>
+        <p class="verdict-note">本工具确认的是：你的文案不含规则库已收录的明确禁止表述。平台审核另含未公开维度，请以官方公示为准。</p>
+      </div>
+
+      <!-- 平台差异矩阵（仅在存在差异时显示） -->
+      <div class="card" id="matrixCard" hidden>
+        <div class="card-head">
+          <h3>平台收录差异</h3>
+          <span class="card-note">同一表述在各平台的收录情况</span>
+        </div>
+        <div class="matrix" id="matrix"></div>
+      </div>
+
+      <!-- 命中清单 -->
+      <div class="card">
+        <div class="card-head">
+          <h3>命中清单</h3>
+          <span class="card-note" id="hitsCount"></span>
+        </div>
+        <div class="hits" id="hits"></div>
+      </div>
+
+      <!-- 原文高亮 -->
+      <div class="card">
+        <div class="card-head">
+          <h3>原文标注</h3>
+          <span class="card-note" id="hlNote">点击命中项可定位</span>
+        </div>
+        <div class="hl-text" id="hlText"></div>
+      </div>
+
+      <!-- 分享 -->
+      <div class="card">
+        <div class="card-head">
+          <h3>分享这次检测</h3>
+          <span class="card-note">带溯源与免责，转发的人负责自己说的话</span>
+        </div>
+        <div class="share-row">
+          <button type="button" class="btn-ghost" id="btnShareText">复制清单</button>
+          <button type="button" class="btn-ghost" id="btnShareLink">复制查词链接</button>
+        </div>
+      </div>
+
+      <!-- AI 语义补充（灰色附录，永远不改变判定等级） -->
+      <div class="ai-block" id="aiBlock">
+        <div class="ai-head">
+          <span class="ai-title">AI 语义补充</span>
+          <span>（可选 · 需你自己的模型 Key）</span>
+          <span style="flex:1"></span>
+          <button type="button" class="btn-ghost" id="btnAiToggle">配置</button>
+        </div>
+        <div id="aiConfigWrap" hidden>
+          <div class="ai-config">
+            <label class="field">
+              <span class="field-label">API 端点 <span class="field-hint">Base URL</span></span>
+              <input type="text" id="aiEndpoint" class="input" placeholder="https://dashscope.aliyuncs.com/compatible-mode/v1" autocomplete="off" spellcheck="false">
+            </label>
+            <label class="field">
+              <span class="field-label">模型</span>
+              <input type="text" id="aiModel" class="input" placeholder="qwen-plus" autocomplete="off" spellcheck="false">
+            </label>
+            <label class="field">
+              <span class="field-label">API Key <span class="field-hint">仅存本机</span></span>
+              <input type="password" id="aiKey" class="input" placeholder="sk-…" autocomplete="off" spellcheck="false">
+            </label>
+          </div>
+          <div class="btn-row">
+            <button type="button" class="btn-primary" id="btnAiRun" disabled>开始语义补充</button>
+            <span class="kbd-hint">Key 只在你的浏览器里使用，不经过任何服务器</span>
+          </div>
+        </div>
+        <div class="ai-text" id="aiText"></div>
+      </div>
+
+      <!-- AI 标注规范 -->
+      <details class="ailabel">
+        <summary>如何标注 AI 生成内容（2026-04 起全平台强制，不标注会被限流或下架）</summary>
+        <div class="ailabel-body">
+          <h4>图文类</h4>
+          <ul>
+            <li>文案首尾各标注一次「本文内容由 AI 辅助生成」</li>
+            <li>图片四角加半透明水印，水印面积不小于画面 1%</li>
+          </ul>
+          <h4>视频类</h4>
+          <ul>
+            <li>封面左上角标注「AI 生成」标识</li>
+            <li>开头 3–5 秒全屏显示 AI 标识，持续不少于 5 秒</li>
+          </ul>
+          <div class="ailabel-copy" id="aiLabelCopy">本文内容由 AI 辅助生成，内容经人工校对。</div>
+          <div class="btn-row" style="margin-top:var(--sp-2)">
+            <button type="button" class="copy-mini" id="btnCopyLabel">复制标注文案</button>
+          </div>
+        </div>
+      </details>
+
+  <!-- 会员引导（M1：会员未开放购买，只诚实说明规划，不放空按钮） -->
+  <div class="convert" id="convertBlock" hidden>
+    <div class="convert-title">会员版规划中</div>
+    <ul class="convert-list">
+      <li>平台规则变更预警（提前于公示生效，而不是等滞后追认）</li>
+      <li>案例库持续扩充</li>
+    </ul>
+    <p class="convert-note">会员尚未开放购买，开放前会在本页公示。检测引擎、全部规则条目、命中位置定位与 AI 语义补充（需你自己的模型 Key，不额外收费）当前对所有人免费开放。</p>
+  </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 规则库 ===================== -->
+<section class="page" id="page-rules">
+  <div class="hero">
+    <h1 class="hero-title">规则库</h1>
+    <p class="hero-sub">每条标注依据的法规条款与平台规范章节号，可跳转官方来源自行核对。</p>
+  </div>
+  <div class="card">
+    <div class="rule-tools">
+      <input type="search" id="ruleSearch" class="input" placeholder="搜索词条…" aria-label="搜索规则">
+      <div class="recent" id="recentWrap" hidden>
+        <span class="recent-label">你最近查过</span>
+        <span id="recentList" style="display:contents"></span>
+      </div>
+      <div class="pills" id="rulePills"></div>
+    </div>
+    <div class="rules" id="ruleList"></div>
+    <div class="count-bar" id="ruleCountBar"></div>
+  </div>
+</section>
+
+<!-- ===================== 案例库 ===================== -->
+<section class="page" id="page-cases">
+  <div class="hero">
+    <h1 class="hero-title">案例库</h1>
+    <p class="hero-sub">已被平台处理过的真实情形，以及改法。仅呈现脱敏文字摘要。</p>
+  </div>
+  <div class="card">
+    <div class="case-grid" id="caseGrid"></div>
+    <div class="count-bar" id="caseCountBar"></div>
+  </div>
+</section>
+
+<!-- ===================== 定价 ===================== -->
+<section class="page" id="page-pricing">
+  <div class="hero">
+    <h1 class="hero-title">会员</h1>
+    <p class="hero-sub">免费版已包含全部规则条目、命中位置定位、改写建议与 AI 语义补充（需你自己的模型 Key）。会员规划中是规则变更预警与扩充中的案例库，尚未开放购买。</p>
+  </div>
+  <div class="pricing" id="pricing"></div>
+</section>
+
+<!-- ===================== 变更记录 ===================== -->
+<section class="page" id="page-changes">
+  <div class="hero">
+    <h1 class="hero-title">平台规则变更记录</h1>
+    <p class="hero-sub">我们只收录能在官方页面上核实的变更。</p>
+  </div>
+  <div class="changes-empty">
+    <h3>暂无可核实的规则变更记录</h3>
+    <p>我们只收录能在官方页面上核实的变更，不使用推断数据填充。<br>你可以直接到下列官方来源自行核对。</p>
+    <div class="sources" id="sourceList"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>本工具是合规辅助工具，用于帮助理解平台规则的合规要求，<strong>不构成法律意见</strong>。所有条目均标注官方来源，请点击规则链接溯源核实平台最新规则。平台规则会动态更新，请以官方页面最新公示为准。</p>
+  <p id="footerMeta" style="margin-top:var(--sp-2)"></p>
+</footer>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="sheet-mask" id="sheetMask" hidden></div>
+<div class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-label="详情">
+  <button type="button" class="sheet-close" id="sheetClose" aria-label="关闭">✕</button>
+  <div id="sheetBody"></div>
+</div>
+
+<script src="detector.js"></script>
+<script src="rules.bundle.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
